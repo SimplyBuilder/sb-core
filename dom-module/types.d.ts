@@ -7,7 +7,7 @@
 export const DomStore: Readonly<{
     name: string;
     version: string;
-    domStoreExtends: (data: object) => void;
+    domStoreExtends: (data: object) => boolean;
     addElement: (element: {
         key: string;
         value: HTMLElement;
