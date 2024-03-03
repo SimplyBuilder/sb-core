@@ -11,6 +11,9 @@
     "lib",
     "types.d.ts"
   ],
+  "imports": {
+    "#sb-core-dom-module": "./lib/main.min.js"
+  },
   "exports": {
     "default": "./lib/main.min.js"
   },
@@ -18,8 +21,7 @@
     "clean": "rm -rf lib && rm -rf build",
     "build": "pnpm run clean && rollup -c",
     "see-pack": "tar tvf $(npm pack)",
-    "pretest": "pnpm run build",
-    "test": "node --test tests/index.js",
+    "test": "pnpm run build && node --test tests/index.js",
     "prepublish": "pnpm test",
     "version:patch": "pnpx changelogen@latest --bump --patch",
     "version:minor": "pnpx changelogen@latest --bump --minor",
