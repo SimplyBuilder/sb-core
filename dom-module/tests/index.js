@@ -27,7 +27,7 @@ describe("import and tests", () => {
         deepEqual(Object.keys(DomModule), ['name', 'version',
             'domModuleExtends', 'createHTMLElement', 'createSVGElement',
             'addElementToStore', 'getElementFromStore', 'removeElementFromStore',
-            'createFromStruct']);
+            'createFromStruct', 'removeElement']);
         //
         ok(typeof DomModule.name === "string");
         ok(typeof DomModule.version === "string");
@@ -38,6 +38,7 @@ describe("import and tests", () => {
         ok(typeof DomModule.getElementFromStore === "function");
         ok(typeof DomModule.removeElementFromStore === "function");
         ok(typeof DomModule.createFromStruct === "function");
+        ok(typeof DomModule.removeElement === "function");
     });
     it("check name and version", () => {
         equal(DomModule.name, "DomModule");
@@ -78,7 +79,7 @@ describe("import and tests", () => {
         ok(element instanceof HTMLElement);
         equal(element.dataset.state, "simply-builder.main");
         equal(element.tagName.toLowerCase(), "section");
-        element.remove();
+        DomModule.removeElement(element);
         equal(document.getElementById("test-create"), null);
     });
 });
