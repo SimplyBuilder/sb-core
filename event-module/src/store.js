@@ -14,11 +14,12 @@ const ActionRefStore = new Map();
  * @param {string} data.type - The type of event to listen for.
  * @param {Function} data.handler - The handler function to execute when the event occurs.
  * @param {string} [data.nodeId] - An optional ID associated with the element.
+ * @param {string} [data.eventId] - An optional ID associated with the event.
  * @returns {boolean}
  */
 const addEventToStore = (data) => {
     try {
-        const {element, type, handler, nodeId} = data;
+        const {element, type, handler, eventId, nodeId} = data;
         if(element && type && handler) {
             if(!element.getAttribute('listener')) {
                 element.setAttribute('listener', 'true');
@@ -26,6 +27,7 @@ const addEventToStore = (data) => {
             if (!ActionRefStore.has(element)) ActionRefStore.set(element, []);
             const schema = {type, handler};
             if(nodeId) schema['nodeId'] = nodeId;
+            if(eventId) schema['eventId'] = eventId;
             ActionRefStore.get(element).push(schema);
             element.addEventListener(type, handler, false);
             return true;
@@ -61,6 +63,30 @@ const removeAllEventsFromStore = (element) => {
         console.error(err);
     }
 };
+/**
+ * @function removeEventIdFromStore
+ * @memberof module:EventStoreModule
+ * @param {Object} data
+ */
+const removeEventIdFromStore = (data) => {
+    const {element, eventId} = data;
+    try {
+        if (ActionRefStore.has(element)) {
+            const eventList = ActionRefStore.get(element);
+            const indexToRemove = eventList.findIndex(item => item.eventId === eventId.toString());
+            if (indexToRemove !== -1) {
+                eventList.splice(indexToRemove, 1);
+            }
+            if(eventList.length === 0) {
+                ActionRefStore.delete(element);
+                element.removeAttribute('listener');
+            }
+        }
+    } catch(err) {
+        console.log("Unable to remove event from element:", element);
+        console.error(err);
+    }
+};
 
 /**
  * @private
@@ -68,6 +94,7 @@ const removeAllEventsFromStore = (element) => {
  */
 const EventStoreModule = Object.freeze({
     addEventToStore,
-    removeAllEventsFromStore
+    removeAllEventsFromStore,
+    removeEventIdFromStore
 });
 export default EventStoreModule;
