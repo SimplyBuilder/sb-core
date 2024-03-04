@@ -1,17 +1,14 @@
 /**
- * The DomStore module, providing an interface to manage DOM elements and integrate version-supported dependencies.
- * It exposes methods for extending the store, adding, retrieving, and removing DOM elements.
- *
- * @exports DomStore
+ * @exports DomModule
  */
-export const DomStore: Readonly<{
-    name: string;
-    version: string;
-    domStoreExtends: (data: object) => boolean;
-    addElement: (element: {
+export const DomModule: Readonly<{
+    name: any;
+    version: any;
+    domStoreExtends: (data: any) => boolean;
+    addElementToStore: (data: {
         key: string;
         value: HTMLElement;
     }) => void;
-    getElement: (key: string) => HTMLElement;
-    removeElement: (key: string, mode?: number) => void;
+    getElementFromStore: (key: string) => HTMLElement;
+    removeElementFromStore: (key: string, mode?: number) => void;
 }>;
