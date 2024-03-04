@@ -1,0 +1,3 @@
+packages:
+  - 'dom-module'
+  - 'event-module'
