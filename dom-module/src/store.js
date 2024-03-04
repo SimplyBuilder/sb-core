@@ -17,16 +17,16 @@ const ElementRefStore = {};
  *
  * @function addElement
  * @memberof module:DomStoreModule
- * @param {Object} element - The object containing the key and the DOM element to store.
- * @param {string} element.key - The key under which to store the element.
- * @param {HTMLElement} element.value - The DOM element to be stored.
+ * @param {Object} data - The object containing the key and the DOM element to store.
+ * @param {string} data.key - The key under which to store the element.
+ * @param {HTMLElement} data.value - The DOM element to be stored.
  */
-const addElement = (element) => {
+const addElement = (data) => {
    try {
-      const {key, value} = element;
+      const {key, value} = data;
       if(key && value) ElementRefStore[key.toString()] = value;
    } catch (err) {
-      console.log("Unable to add element:", element);
+      console.log("Unable to add element:", data);
       console.error(err);
    }
 };
@@ -59,13 +59,13 @@ const getElement = (key) => {
  * @param {Object} data - The data object containing parameters for element removal.
  * @param {string} data.key - The key of the element to be removed.
  * @param {number} [data.mode=1] - The mode of removal, determining if associated events should also be removed.
- * @param {Object} data.EventStore - The event store object for managing associated event listeners.
+ * @param {Object} data.EventModule - The event store object for managing associated event listeners.
  */
 const removeElement = (data = {}) => {
-   const{key, mode = 1, EventStore} = data;
+   const{key, mode = 1, EventModule= {}} = data;
    try {
       const modeTypes = {
-         1: (key) => EventStore['removeEventStore'](ElementRefStore[key]),
+         1: (key) => EventModule['removeEventStore'](ElementRefStore[key]),
          2: (key) => delete ElementRefStore[key]
       };
       if(key && Number(mode) >= 1 && modeTypes[Number(mode)]) {
@@ -87,8 +87,6 @@ const removeElement = (data = {}) => {
  * @module DomStoreModule
  */
 const DomStoreModule = Object.freeze({
-   name: 'DomStoreLibName',
-   version: 'DomStoreLibVersion',
    addElement,
    getElement,
    removeElement
