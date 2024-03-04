@@ -101,5 +101,6 @@ describe("import and tests", () => {
             element: document.getElementById("test"), eventId: 'test2'
         }), false);
         ok(document.getElementById("test").getAttribute('listener') === null);
+        equal(EventModule.removeEventIdFromStore(), false);
     });
 });
