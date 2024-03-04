@@ -2,7 +2,7 @@
 /**
  * Provides a comprehensive API for managing and interacting with DOM elements.
  * This module extends an existing store with additional functionality and integrates version support validation
- * for dependencies, particularly focusing on the EventStore. It allows registering dependencies with version constraints
+ * for dependencies, particularly focusing on the EventModule. It allows registering dependencies with version constraints
  * to ensure compatibility.
  *
  * @module DomStore
@@ -10,11 +10,6 @@
 
 import store from "./store.js";
 
-/**
- * @private
- * @ignore
- */
-const {name, version} = store;
 /**
  * Represents the internal storage structure for the module. It includes registration for dependencies
  * and version constraints for allowed dependencies.
@@ -25,13 +20,22 @@ const {name, version} = store;
  * @type {Object}
  */
 const internalStore = {
+   app: {
+      name: 'DomStoreLibName',
+      version: 'DomStoreLibVersion'
+   },
    register: {},
    allow: {
-      EventStore: {
+      EventModule: {
          major: 1
       }
    }
 };
+/**
+ * @private
+ * @ignore
+ */
+const {name, version} = internalStore.app;
 
 /**
  * Validates if a dependency meets the version constraints specified in the internal store.
@@ -106,16 +110,16 @@ const getElement = store.getElement;
 /**
  * Removes a DOM element from the store and optionally handles associated events.
  * This function extends the basic removeElement functionality with the capability to interact with
- * the EventStore for managing event listeners.
+ * the EventModule for managing event listeners.
  *
  * @function removeElement
  * @memberof module:DomStore
  * @param {string} key - The key of the element to remove.
- * @param {number} [mode=1] - The mode of operation. Mode 1 interacts with EventStore, while mode 2 does not.
+ * @param {number} [mode=1] - The mode of operation. Mode 1 interacts with EventModule, while mode 2 does not.
  */
 const removeElement = (key, mode = 1) => {
-   const {EventStore} = internalStore.register;
-   if(mode === 1 && EventStore) return store.removeElement({key, mode, EventStore});
+   const {EventModule} = internalStore.register;
+   if(mode === 1 && EventModule) return store.removeElement({key, mode, EventModule});
    return store.removeElement({key, mode: 2});
 };
 /**
