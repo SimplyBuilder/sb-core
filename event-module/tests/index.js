@@ -22,7 +22,7 @@ describe("import and tests", () => {
         //
         deepEqual(Object.keys(EventModule), ['name', 'version',
             'eventRegister', 'eventUnregister', 'EventTypes', 'EventActions',
-            'addEventToStore', 'removeAllEventsFromStore']);
+            'addEventToStore', 'removeAllEventsFromStore', 'removeEventIdFromStore']);
         //
         ok(typeof EventModule.name === "string");
         ok(typeof EventModule.version === "string");
@@ -32,6 +32,7 @@ describe("import and tests", () => {
         ok(typeof EventModule.eventUnregister === "function");
         ok(typeof EventModule.addEventToStore === "function");
         ok(typeof EventModule.removeAllEventsFromStore === "function");
+        ok(typeof EventModule.removeEventIdFromStore === "function");
     });
     it("check name and version", () => {
         equal(EventModule.name, "EventModule");
