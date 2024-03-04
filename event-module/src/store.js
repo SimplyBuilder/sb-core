@@ -85,9 +85,12 @@ const removeAllEventsFromStore = (element) => {
  * @param {Object} data
  * @returns {boolean}
  */
-const removeEventIdFromStore = (data) => {
+const removeEventIdFromStore = (data = {}) => {
     const {element, eventId} = data;
     try {
+        if((typeof element === "undefined") || (typeof eventId === "undefined")) {
+            throw new Error("removeEventIdFromStore needs EventId and element.");
+        }
         if (ActionRefStore.has(element)) {
             const eventList = ActionRefStore.get(element);
             if(eventList.length >= 1) {
@@ -96,9 +99,9 @@ const removeEventIdFromStore = (data) => {
                     eventList.splice(indexToRemove, 1);
                     clearEvent(element);
                     return true;
-                }
+                } else console.info("Event Id: "+ eventId +", not exist to element.");
             } else clearEvent(element);
-        }
+        } else console.info("No events found for the element. request eventId: "+ eventId);
     } catch(err) {
         console.log("Unable to remove event from element:", element);
         console.error(err);
