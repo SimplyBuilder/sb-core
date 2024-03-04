@@ -7,7 +7,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const pkg = require("./package.json");
 
-const libName = 'DomStore';
+const libName = 'DomModule';
 const {version} = pkg;
 
 const outputDefault = {
@@ -50,8 +50,8 @@ export default {
     plugins: [
         replace({
             preventAssignment:true,
-            'DomStoreLibName': libName,
-            'DomStoreLibVersion': version
+            'DomModuleLibName': libName,
+            'DomModuleLibVersion': version
         })
     ]
 };
