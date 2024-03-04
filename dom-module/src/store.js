@@ -65,8 +65,13 @@ const removeElement = (data = {}) => {
    const{key, mode = 1, EventModule= {}} = data;
    try {
       const modeTypes = {
-         1: (key) => EventModule['removeEventStore'](ElementRefStore[key]),
-         2: (key) => delete ElementRefStore[key]
+         1: (key) => {
+            if(typeof EventModule.removeAllEventsFromStore === "function") EventModule.removeAllEventsFromStore(ElementRefStore[key]);
+            delete ElementRefStore[key];
+         },
+         2: (key) => {
+            delete ElementRefStore[key]
+         }
       };
       if(key && Number(mode) >= 1 && modeTypes[Number(mode)]) {
          modeTypes[Number(mode)](key);
