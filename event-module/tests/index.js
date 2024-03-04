@@ -5,33 +5,33 @@ import {deepEqual, equal, notEqual, ok} from "node:assert";
 import {EventModule} from "#sb-core-event-module";
 
 import { createRequire } from "node:module";
+import {JSDOM} from "jsdom";
 const require = createRequire(import.meta.url);
 const pkg = require("../package.json");
 
-const testElement = "<div></div>";
 const testKeyElement = "test.element";
 const testFnElement = (e) => {
-    console.log("testFnElement", e);
     if(e) return true;
 };
+const dom = new JSDOM(`<!DOCTYPE html><html lang="en"><head><title>test</title></head><body></body></html>`);
+const document = dom.window.document;
 
 describe("import and tests", () => {
     it("check object", () => {
         ok(typeof EventModule === "object");
         //
-        deepEqual(Object.keys(EventModule), ['name', 'version', 'eventModuleExtends',
+        deepEqual(Object.keys(EventModule), ['name', 'version',
             'eventRegister', 'eventUnregister', 'EventTypes', 'EventActions',
-            'registerEventStore', 'removeEventStore']);
+            'addEventToStore', 'removeAllEventsFromStore']);
         //
         ok(typeof EventModule.name === "string");
         ok(typeof EventModule.version === "string");
         ok(typeof EventModule.EventTypes === "object");
         ok(typeof EventModule.EventActions === "object");
-        ok(typeof EventModule.eventModuleExtends === "function");
         ok(typeof EventModule.eventRegister === "function");
         ok(typeof EventModule.eventUnregister === "function");
-        ok(typeof EventModule.registerEventStore === "function");
-        ok(typeof EventModule.removeEventStore === "function");
+        ok(typeof EventModule.addEventToStore === "function");
+        ok(typeof EventModule.removeAllEventsFromStore === "function");
     });
     it("check name and version", () => {
         equal(EventModule.name, "EventModule");
@@ -53,11 +53,24 @@ describe("import and tests", () => {
         ok(Object.keys(EventTypes).length === 0);
         ok(Object.keys(EventActions).length === 0);
     });
-    //
-    it("eventStoreExtends", () => {
-        notEqual(EventModule.eventModuleExtends({name: "DomStore", version: "0.0.1"}), true);
-        equal(EventModule.eventModuleExtends({name: "DomStore", version: "1"}), true);
-        equal(EventModule.eventModuleExtends({name: "DomStore", version: "1.0.1"}), true);
-        notEqual(EventModule.eventModuleExtends({name: "DomStore", version: "0.1.1"}), true);
+    it("registerEventStore and removeEventStore", () => {
+        const test = {type: 'click', handler: testFnElement};
+        equal(EventModule.addEventToStore({
+            element: document.getElementById("test"), ...test
+        }), false);
+        ok(document.body.childNodes.length === 0);
+        //
+        const testElement = document.createElement("div");
+        testElement.setAttribute("id", "test");
+        testElement.innerText = "test";
+        document.body.appendChild(testElement);
+        //
+        ok(document.body.childNodes.length === 1);
+        equal(EventModule.addEventToStore({
+            element: document.getElementById("test"), ...test
+        }), true);
+        ok(document.getElementById("test").getAttribute('listener') === "true");
+        EventModule.removeAllEventsFromStore(document.getElementById("test"));
+        ok(document.getElementById("test").getAttribute('listener') === null);
     });
 });
