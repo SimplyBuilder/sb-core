@@ -89,6 +89,7 @@ const removeEventIdFromStore = (data = {}) => {
     const {element, eventId} = data;
     try {
         if((typeof element === "undefined") || (typeof eventId === "undefined")) {
+            // noinspection ExceptionCaughtLocallyJS
             throw new Error("removeEventIdFromStore needs EventId and element.");
         }
         if (ActionRefStore.has(element)) {
