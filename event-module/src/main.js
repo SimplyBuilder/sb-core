@@ -7,9 +7,6 @@ import store from "./store.js";
 import component from "./component.js";
 
 /**
- * Represents the internal storage structure for the module. It includes registration for dependencies
- * and version constraints for allowed dependencies.
- *
  * @ignore
  * @private
  * @memberof module:EventModule
