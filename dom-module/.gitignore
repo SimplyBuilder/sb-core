@@ -5,6 +5,10 @@
 !src
 !src/main.js
 !src/store.js
+!src/component
+!src/component/main.js
+!src/component/dataset.js
+!src/component/attribute.js
 !types.d.ts
 
 !tests/
