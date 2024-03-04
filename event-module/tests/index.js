@@ -57,7 +57,7 @@ describe("import and tests", () => {
         ok(Object.keys(EventTypes).length === 0);
         ok(Object.keys(EventActions).length === 0);
     });
-    it("registerEventStore and removeEventStore", () => {
+    it("ddEventToStore, removeEventIdFromStore and removeAllEventsFromStore", () => {
         const test = {type: 'click', handler: testFnElement};
         equal(EventModule.addEventToStore({
             element: document.getElementById("test"), ...test
@@ -74,7 +74,32 @@ describe("import and tests", () => {
             element: document.getElementById("test"), ...test
         }), true);
         ok(document.getElementById("test").getAttribute('listener') === "true");
-        EventModule.removeAllEventsFromStore(document.getElementById("test"));
+        equal(EventModule.removeAllEventsFromStore(document.getElementById("test")), true);
+        equal(EventModule.removeAllEventsFromStore(document.getElementById("test")), false);
+        ok(document.getElementById("test").getAttribute('listener') === null);
+        equal(EventModule.addEventToStore({
+            element: document.getElementById("test"), eventId: 'test1', ...test
+        }), true);
+        ok(document.getElementById("test").getAttribute('listener') === "true");
+        equal(EventModule.addEventToStore({
+            element: document.getElementById("test"), eventId: 'test2', ...test, type: 'change'
+        }), true);
+        ok(document.getElementById("test").getAttribute('listener') === "true");
+        equal(EventModule.removeEventIdFromStore({
+            element: document.getElementById("test"), eventId: 'test1'
+        }), true);
+        ok(document.getElementById("test").getAttribute('listener') === "true");
+        equal(EventModule.removeEventIdFromStore({
+            element: document.getElementById("test"), eventId: 'test1'
+        }), false);
+        ok(document.getElementById("test").getAttribute('listener') === "true");
+        equal(EventModule.removeEventIdFromStore({
+            element: document.getElementById("test"), eventId: 'test2'
+        }), true);
+        ok(document.getElementById("test").getAttribute('listener') === null);
+        equal(EventModule.removeEventIdFromStore({
+            element: document.getElementById("test"), eventId: 'test2'
+        }), false);
         ok(document.getElementById("test").getAttribute('listener') === null);
     });
 });
