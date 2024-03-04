@@ -17,4 +17,5 @@ export const DomModule: Readonly<{
         struct: any;
         parent?: HTMLElement;
     }) => boolean;
+    removeElement: (element: HTMLElement | SVGAElement) => void;
 }>;
