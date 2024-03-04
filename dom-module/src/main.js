@@ -4,6 +4,11 @@
  */
 
 import store from "./store.js";
+import component from "./component/main.js";
+/**
+ * @private
+ * @ignore
+ */
 const {addElementToStore, getElementFromStore} = store;
 /**
  * @ignore
@@ -30,7 +35,6 @@ const internalStore = {
 const {name, version} = internalStore.app;
 
 /**
- * @ignore
  * @private
  * @function validVersionSupport
  * @memberof module:DomModule
@@ -41,10 +45,10 @@ const {name, version} = internalStore.app;
  */
 const validVersionSupport = (data) => {
    const {name, version} = data;
-   if(internalStore.allow[name.toString()] && version) {
+   if (internalStore.allow[name.toString()] && version) {
       const {major, minor, patch} = internalStore.allow[name.toString()];
       const arrVersion = version.split(".");
-      if(arrVersion.length >= 1) {
+      if (arrVersion.length >= 1) {
          return !(((major && arrVersion[0]) && (major > Number(arrVersion[0])))
              || ((minor && arrVersion[1]) && (minor > Number(arrVersion[1])))
              || ((patch && arrVersion[2]) && (patch > Number(arrVersion[2]))));
@@ -54,15 +58,15 @@ const validVersionSupport = (data) => {
    return false;
 };
 /**
- * @function domStoreExtends
+ * @function domModuleExtends
  * @memberof module:DomModule
  * @param {Object} data - The object containing information about the dependency to register.
  * @returns boolean
  */
-const domStoreExtends = (data) => {
+const domModuleExtends = (data) => {
    try {
       const {name} = data;
-      if(validVersionSupport(data)) {
+      if (validVersionSupport(data)) {
          internalStore.register[name.toString()] = data;
          return true;
       }
@@ -72,7 +76,6 @@ const domStoreExtends = (data) => {
    }
    return false;
 };
-
 /**
  * @function removeElementFromStore
  * @memberof module:DomModule
@@ -81,15 +84,127 @@ const domStoreExtends = (data) => {
  */
 const removeElementFromStore = (key, mode = 1) => {
    const {EventModule} = internalStore.register;
-   if(mode === 1 && EventModule) return store.removeElementFromStore({key, mode, EventModule});
+   if (mode === 1 && EventModule) return store.removeElementFromStore({key, mode, EventModule});
    return store.removeElementFromStore({key, mode: 2});
+};
+/**
+ * @function createHTMLElement
+ * @memberof module:DomModule
+ * @param data
+ * @returns {HTMLElement|undefined}
+ */
+const createHTMLElement = (data) => {
+   return component.createHTMLElement({...data, DomStore: {addElementToStore, getElementFromStore}});
+};
+/**
+ * @function createSVGElement
+ * @memberof module:DomModule
+ * @param data
+ * @returns {SVGElement|undefined}
+ */
+const createSVGElement = (data) => {
+   return component.createSVGElement({...data, DomStore: {addElementToStore, getElementFromStore}});
+};
+/**
+* @private
+* @function createChildren
+* @memberof module:DomModule
+* @param {Object} data
+* @param {Object} data.struct
+* @param {HTMLElement} data.element
+*/
+const createChildren = (data) => {
+   const {struct, element} = data;
+   if (struct.children) {
+      const startFromLast = struct.children.toReversed();
+      for (let i = (startFromLast.length - 1); i >= 0; i--) {
+         const childItem = startFromLast[i];
+         if (childItem) createFromStruct({struct: childItem, parent: element});
+      }
+   }
+};
+/**
+* @private
+* @function TypeSelect
+* @memberof module:DomModule
+* @param {string} type
+* @returns {function|undefined}
+*/
+const TypeSelect = (type) => {
+   try {
+      if (type && type === "svg") return createSVGElement;
+      return createHTMLElement;
+   } catch (err) {
+      console.error(err);
+      return undefined;
+   }
+};
+/**
+* @private
+* @function createEventElement
+* @memberof module:DomModule
+* @param {Object} data.struct
+* @param {HTMLElement} data.element
+*/
+const createEventElement = (data) => {
+   const {struct = {}, element} = data;
+   const {EventModule} = internalStore.register;
+   if ((struct.event?.action && struct.event?.type)
+       && EventModule?.EventActions[struct.event.action.toString()]) {
+      const eventStoreSchema = {
+         element,
+         type: struct.event.type.toString(),
+         handler: EventModule?.EventActions[struct.event.action.toString()]
+      };
+      if (struct.event.node) eventStoreSchema['nodeId'] = struct.event.node;
+      EventModule?.addEventToStore(eventStoreSchema);
+   }
+};
+/**
+* @function createFromStruct
+* @memberof module:DomModule
+* @param {Object} data
+* @param {Object} data.struct
+* @param {HTMLElement} [data.parent=document.body]
+* @returns {boolean}
+*/
+const createFromStruct = (data) => {
+   try {
+      if (typeof data === "object") {
+         const {struct, parent = document.body} = data;
+         if (!struct?.element) return false;
+         let typeStruct = "html";
+         if (struct.type && struct.type.toString().trim().length >= 1) typeStruct = struct.type.toString().trim();
+         const el = TypeSelect(typeStruct.toLowerCase())({
+            parent,
+            shadow: struct['shadow'],
+            element: {
+               type: struct.element,
+               attr: Object.entries(struct.attr || {}).map(([name, value]) => ({name, value})),
+               attrNS: Object.entries(struct.attrNS || {}).map(([name, value]) => ({name, value})),
+               dataset: Object.entries(struct.dataset || {}).map(([name, value]) => ({name, value}))
+            }
+         });
+
+         if (struct["text"]) el.textContent = struct["text"];
+         if (struct["html"]) el.innerHTML = struct["html"];
+         createEventElement({struct, element: el});
+         createChildren({struct, element: el});
+         return true;
+      }
+   } catch (err) {
+      console.error(err);
+   }
+   return false;
 };
 /**
  * @exports DomModule
  */
 export const DomModule = Object.freeze({
    name, version,
-   domStoreExtends,
+   domModuleExtends,
+   createHTMLElement, createSVGElement,
    addElementToStore, getElementFromStore,
-   removeElementFromStore
+   removeElementFromStore,
+   createFromStruct
 });
