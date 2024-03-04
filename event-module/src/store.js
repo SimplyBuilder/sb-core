@@ -6,6 +6,21 @@
  * @memberof module:EventStoreModule
  */
 const ActionRefStore = new Map();
+
+/**
+ * @function clearEvent
+ * @memberof module:EventStoreModule
+ * @param {HTMLElement} element
+ * @param {boolean} force
+ * @returns {boolean}
+ */
+const clearEvent = (element, force = false) => {
+    if(force || (ActionRefStore.get(element).length === 0)) {
+        ActionRefStore.delete(element);
+        element.removeAttribute('listener');
+    }
+    return true;
+};
 /**
  * @function addEventToStore
  * @memberof module:EventStoreModule
@@ -42,6 +57,7 @@ const addEventToStore = (data) => {
  * @function removeAllEventsFromStore
  * @memberof module:EventStoreModule
  * @param {HTMLElement} element - The element for which to remove all associated event handlers.
+ * @returns {boolean}
  */
 const removeAllEventsFromStore = (element) => {
     try {
@@ -50,11 +66,10 @@ const removeAllEventsFromStore = (element) => {
             if(eventList.length >= 1) {
                 for(let i = (eventList.length - 1); i >=0; i--) {
                     const item = eventList[i];
-                    if(item) element.removeEventListener(item.type, item.handler, false);
-                    if(i === 0) {
-                        ActionRefStore.delete(element);
-                        element.removeAttribute('listener');
+                    if(item) {
+                        element.removeEventListener(item.type, item.handler, false);
                     }
+                    if(i === 0) return clearEvent(element, true);
                 }
             }
         }
@@ -62,30 +77,33 @@ const removeAllEventsFromStore = (element) => {
         console.log("Unable to remove event from element:", element);
         console.error(err);
     }
+    return false;
 };
 /**
  * @function removeEventIdFromStore
  * @memberof module:EventStoreModule
  * @param {Object} data
+ * @returns {boolean}
  */
 const removeEventIdFromStore = (data) => {
     const {element, eventId} = data;
     try {
         if (ActionRefStore.has(element)) {
             const eventList = ActionRefStore.get(element);
-            const indexToRemove = eventList.findIndex(item => item.eventId === eventId.toString());
-            if (indexToRemove !== -1) {
-                eventList.splice(indexToRemove, 1);
-            }
-            if(eventList.length === 0) {
-                ActionRefStore.delete(element);
-                element.removeAttribute('listener');
-            }
+            if(eventList.length >= 1) {
+                const indexToRemove = eventList.findIndex(item => item.eventId === eventId.toString());
+                if (indexToRemove !== -1) {
+                    eventList.splice(indexToRemove, 1);
+                    clearEvent(element);
+                    return true;
+                }
+            } else clearEvent(element);
         }
     } catch(err) {
         console.log("Unable to remove event from element:", element);
         console.error(err);
     }
+    return false;
 };
 
 /**
