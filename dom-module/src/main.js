@@ -198,6 +198,25 @@ const createFromStruct = (data) => {
    return false;
 };
 /**
+ * @function removeElement
+ * @memberof module:DomModule
+ * @param {HTMLElement|SVGAElement} element
+ */
+const removeElement = (element) => {
+   const {EventModule = {}} = internalStore.register;
+   if (typeof EventModule.removeAllEventsFromStore === "function") {
+      EventModule.removeAllEventsFromStore(element);
+      const elements = element.querySelectorAll('[listener="true"]');
+      if (elements.length >= 1) {
+         for (let i = (elements.length - 1); i >= 0; i--) {
+            const item = elements[i];
+            if (item) EventModule.removeAllEventsFromStore(item);
+         }
+      }
+   }
+   element.remove();
+};
+/**
  * @exports DomModule
  */
 export const DomModule = Object.freeze({
@@ -206,5 +225,5 @@ export const DomModule = Object.freeze({
    createHTMLElement, createSVGElement,
    addElementToStore, getElementFromStore,
    removeElementFromStore,
-   createFromStruct
+   createFromStruct, removeElement
 });
