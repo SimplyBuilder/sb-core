@@ -43,12 +43,15 @@ describe("import and tests", () => {
         const {EventTypes, EventActions} = EventModule;
         ok(Object.keys(EventTypes).length === 0);
         ok(Object.keys(EventActions).length === 0);
-        EventModule.eventRegister(testKeyElement, testFnElement);
+        equal(EventModule.eventUnregister(testKeyElement), false);
+        equal(EventModule.eventRegister(testKeyElement, testFnElement), true);
+        equal(EventModule.eventRegister(testKeyElement, testFnElement), false);
         ok(Object.keys(EventTypes).length === 1);
         ok(Object.keys(EventActions).length === 1);
         equal(EventTypes[testKeyElement.toUpperCase()], testKeyElement);
         equal(EventActions[EventTypes[testKeyElement.toUpperCase()]], testFnElement);
-        EventModule.eventUnregister(testKeyElement);
+        equal(EventModule.eventUnregister(testKeyElement), true);
+        equal(EventModule.eventUnregister(testKeyElement), false);
         notEqual(EventTypes[testKeyElement.toUpperCase()], testKeyElement);
         notEqual(EventActions[EventTypes[testKeyElement.toUpperCase()]], testFnElement);
         ok(Object.keys(EventTypes).length === 0);
