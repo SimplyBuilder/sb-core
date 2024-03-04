@@ -1,19 +1,11 @@
 'use strict';
 /**
- * Provides a comprehensive API for managing and interacting with DOM elements.
- * This module extends an existing store with additional functionality and integrates version support validation
- * for dependencies, particularly focusing on the EventModule. It allows registering dependencies with version constraints
- * to ensure compatibility.
- *
  * @module DomStore
  */
 
 import store from "./store.js";
 
 /**
- * Represents the internal storage structure for the module. It includes registration for dependencies
- * and version constraints for allowed dependencies.
- *
  * @ignore
  * @private
  * @memberof module:DomStore
@@ -38,9 +30,6 @@ const internalStore = {
 const {name, version} = internalStore.app;
 
 /**
- * Validates if a dependency meets the version constraints specified in the internal store.
- * It checks major, minor, and patch versions to ensure compatibility.
- *
  * @ignore
  * @private
  * @function validVersionSupport
@@ -65,9 +54,6 @@ const validVersionSupport = (data) => {
    return false;
 };
 /**
- * Extends the DomStore with additional functionality by registering a dependency if it meets the version constraints.
- * This allows integrating external modules or plugins into the DomStore environment.
- *
  * @function domStoreExtends
  * @memberof module:DomStore
  * @param {Object} data - The object containing information about the dependency to register.
@@ -87,10 +73,6 @@ const domStoreExtends = (data) => {
    return false;
 };
 /**
- * Reuses the `addElement` method from the imported `store` to add a DOM element to the internal store.
- * This function allows clients of the `DomStore` module to register DOM elements for later retrieval or manipulation,
- * leveraging the underlying logic defined in the `store` module.
- *
  * @alias module:DomStore.addElement
  * @param {Object} element - The object containing the key and the DOM element to store.
  * @param {string} element.key - The unique key under which to store the DOM element.
@@ -98,20 +80,12 @@ const domStoreExtends = (data) => {
  */
 const addElement = store.addElement;
 /**
- * Reuses the `getElement` method from the imported `store` to retrieve a DOM element from the internal store
- * using its unique key. This function provides access to previously stored DOM elements, allowing for
- * efficient DOM manipulation and interaction based on stored references.
- *
  * @alias module:DomStore.getElement
  * @param {string} key - The unique key associated with the DOM element to retrieve.
  * @returns {HTMLElement|undefined} - The DOM element associated with the provided key, or `undefined` if no element is found.
  */
 const getElement = store.getElement;
 /**
- * Removes a DOM element from the store and optionally handles associated events.
- * This function extends the basic removeElement functionality with the capability to interact with
- * the EventModule for managing event listeners.
- *
  * @function removeElement
  * @memberof module:DomStore
  * @param {string} key - The key of the element to remove.
@@ -123,9 +97,6 @@ const removeElement = (key, mode = 1) => {
    return store.removeElement({key, mode: 2});
 };
 /**
- * The DomStore module, providing an interface to manage DOM elements and integrate version-supported dependencies.
- * It exposes methods for extending the store, adding, retrieving, and removing DOM elements.
- *
  * @exports DomStore
  */
 export const DomStore = Object.freeze({
