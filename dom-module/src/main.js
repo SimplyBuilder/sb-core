@@ -1,20 +1,20 @@
 'use strict';
 /**
- * @module DomStore
+ * @module DomModule
  */
 
 import store from "./store.js";
-
+const {addElementToStore, getElementFromStore} = store;
 /**
  * @ignore
  * @private
- * @memberof module:DomStore
+ * @memberof module:DomModule
  * @type {Object}
  */
 const internalStore = {
    app: {
-      name: 'DomStoreLibName',
-      version: 'DomStoreLibVersion'
+      name: 'DomModuleLibName',
+      version: 'DomModuleLibVersion'
    },
    register: {},
    allow: {
@@ -33,7 +33,7 @@ const {name, version} = internalStore.app;
  * @ignore
  * @private
  * @function validVersionSupport
- * @memberof module:DomStore
+ * @memberof module:DomModule
  * @param {Object} data - The object containing the name and version of the dependency.
  * @param {string} data.name - The name of the dependency.
  * @param {string} data.version - The version string of the dependency.
@@ -55,7 +55,7 @@ const validVersionSupport = (data) => {
 };
 /**
  * @function domStoreExtends
- * @memberof module:DomStore
+ * @memberof module:DomModule
  * @param {Object} data - The object containing information about the dependency to register.
  * @returns boolean
  */
@@ -72,37 +72,24 @@ const domStoreExtends = (data) => {
    }
    return false;
 };
+
 /**
- * @alias module:DomStore.addElement
- * @param {Object} element - The object containing the key and the DOM element to store.
- * @param {string} element.key - The unique key under which to store the DOM element.
- * @param {HTMLElement} element.value - The actual DOM element to be added to the store.
- */
-const addElement = store.addElement;
-/**
- * @alias module:DomStore.getElement
- * @param {string} key - The unique key associated with the DOM element to retrieve.
- * @returns {HTMLElement|undefined} - The DOM element associated with the provided key, or `undefined` if no element is found.
- */
-const getElement = store.getElement;
-/**
- * @function removeElement
- * @memberof module:DomStore
+ * @function removeElementFromStore
+ * @memberof module:DomModule
  * @param {string} key - The key of the element to remove.
  * @param {number} [mode=1] - The mode of operation. Mode 1 interacts with EventModule, while mode 2 does not.
  */
-const removeElement = (key, mode = 1) => {
+const removeElementFromStore = (key, mode = 1) => {
    const {EventModule} = internalStore.register;
-   if(mode === 1 && EventModule) return store.removeElement({key, mode, EventModule});
-   return store.removeElement({key, mode: 2});
+   if(mode === 1 && EventModule) return store.removeElementFromStore({key, mode, EventModule});
+   return store.removeElementFromStore({key, mode: 2});
 };
 /**
- * @exports DomStore
+ * @exports DomModule
  */
-export const DomStore = Object.freeze({
+export const DomModule = Object.freeze({
    name, version,
    domStoreExtends,
-   addElement,
-   getElement,
-   removeElement
+   addElementToStore, getElementFromStore,
+   removeElementFromStore
 });
