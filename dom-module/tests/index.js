@@ -35,9 +35,9 @@ describe("import and tests", () => {
         notEqual(DomStore.getElement(testKeyElement), testElement);
     });
     it("domStoreExtends", () => {
-        notEqual(DomStore.domStoreExtends({name: "EventStore", version: "0.0.1"}), true);
-        equal(DomStore.domStoreExtends({name: "EventStore", version: "1"}), true);
-        equal(DomStore.domStoreExtends({name: "EventStore", version: "1.0.1"}), true);
-        notEqual(DomStore.domStoreExtends({name: "EventStore", version: "0.1.1"}), true);
+        notEqual(DomStore.domStoreExtends({name: "EventModule", version: "0.0.1"}), true);
+        equal(DomStore.domStoreExtends({name: "EventModule", version: "1"}), true);
+        equal(DomStore.domStoreExtends({name: "EventModule", version: "1.0.1"}), true);
+        notEqual(DomStore.domStoreExtends({name: "EventModule", version: "0.1.1"}), true);
     });
 });
