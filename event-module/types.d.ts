@@ -2,6 +2,8 @@
  * @exports EventModule
  */
 export const EventModule: Readonly<{
+    name: string;
+    version: string;
     addEventToStore: (data: {
         element: HTMLElement;
         type: string;
@@ -10,11 +12,9 @@ export const EventModule: Readonly<{
         eventId?: string;
     }) => boolean;
     removeAllEventsFromStore: (element: HTMLElement) => boolean;
-    removeEventIdFromStore: (data?: any) => boolean;
+    removeEventIdFromStore: (data?: object) => boolean;
     eventRegister: (name: string, fn?: Function) => boolean;
     eventUnregister: (name: string) => boolean;
-    EventTypes: {};
-    EventActions: {};
-    name: any;
-    version: any;
+    EventTypes: object;
+    EventActions: object;
 }>;
