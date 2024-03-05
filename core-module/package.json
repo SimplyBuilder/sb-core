@@ -1,0 +1,66 @@
+{
+  "name": "@jamilservices/sb-core-module",
+  "package": "@jamilservices/sb-core-module",
+  "description": "Simply Builder Core Module - Dom Manager and Store",
+  "version": "1.0.0",
+  "module": "lib/main.min.js",
+  "type": "module",
+  "types": "./types.d.ts",
+  "files": [
+    "AUTHORS",
+    "lib",
+    "types.d.ts"
+  ],
+  "imports": {
+    "#sb-core-module": "./lib/main.min.js"
+  },
+  "exports": {
+    "default": "./lib/main.min.js"
+  },
+  "scripts": {
+    "clean": "rm -rf lib && rm -rf build",
+    "build:deps": "cd ../event-module && pnpm build:core && cd ../dom-module && pnpm build:core",
+    "build": "pnpm run clean && pnpm run build:deps && rollup -c",
+    "see-pack": "tar tvf $(npm pack)",
+    "test": "pnpm run build && node --test tests/index.js",
+    "prepublish": "pnpm test",
+    "version:patch": "pnpx changelogen@latest --bump --patch",
+    "version:minor": "pnpx changelogen@latest --bump --minor",
+    "version:major": "pnpx changelogen@latest --bump --major"
+  },
+  "homepage": "https://simplybuilder.github.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimplyBuilder/sb-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SimplyBuilder/sb-core/issues"
+  },
+  "author": "Jamil Serviços <jamilservicos@gmail.com> (https://github.com/jamilservicos)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.10.x"
+  },
+  "os": [
+    "!win32"
+  ],
+  "keywords": [
+    "jamilservicos",
+    "jamilservices",
+    "node",
+    "nodejs",
+    "node.js",
+    "javascript",
+    "simply-builder",
+    "simplybuilder",
+    "simply",
+    "builder",
+    "module",
+    "core",
+    "front",
+    "frontend",
+    "front-end",
+    "dom",
+    "event"
+  ]
+}
