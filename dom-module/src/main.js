@@ -198,20 +198,38 @@ const createFromStruct = (data) => {
    return false;
 };
 /**
+ * @private
+ * @function removeElementFromStoreOrEvents
+ * @memberof module:DomModule
+ * @param {HTMLElement|SVGAElement} element
+ * @returns {boolean}
+ */
+const removeElementFromStoreOrEvents = (element) => {
+   try {
+      const {EventModule = {}} = internalStore.register;
+      if(element.dataset?.state) {
+         removeElementFromStore(element.dataset.state);
+         return true;
+      }
+      if (typeof EventModule.removeAllEventsFromStore === "function") {
+         EventModule.removeAllEventsFromStore(element);
+         return true;
+      }
+   } catch {}
+   return false;
+};
+/**
  * @function removeElement
  * @memberof module:DomModule
  * @param {HTMLElement|SVGAElement} element
  */
 const removeElement = (element) => {
-   const {EventModule = {}} = internalStore.register;
-   if (typeof EventModule.removeAllEventsFromStore === "function") {
-      EventModule.removeAllEventsFromStore(element);
-      const elements = element.querySelectorAll('[listener="true"]');
-      if (elements.length >= 1) {
-         for (let i = (elements.length - 1); i >= 0; i--) {
-            const item = elements[i];
-            if (item) EventModule.removeAllEventsFromStore(item);
-         }
+   removeElementFromStoreOrEvents(element);
+   const elements = element.querySelectorAll('[listener="true"]');
+   if (elements.length >= 1) {
+      for (let i = (elements.length - 1); i >= 0; i--) {
+         const item = elements[i];
+         if (item) removeElementFromStoreOrEvents(item);
       }
    }
    element.remove();
