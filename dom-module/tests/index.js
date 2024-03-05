@@ -11,6 +11,7 @@ import {JSDOM} from "jsdom";
 
 const require = createRequire(import.meta.url);
 const pkg = require("../package.json");
+const eventPkg = require("../../event-module/package.json");
 
 const testKeyElement = "test.element";
 
@@ -58,7 +59,7 @@ describe("import and tests", () => {
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1"}), true);
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1.0.1"}), true);
         notEqual(DomModule.domModuleExtends({name: "EventModule", version: "0.1.1"}), true);
-        equal(DomModule.domModuleExtends({...EventModule, name: "EventModule", version: "1"}), true);
+        equal(DomModule.domModuleExtends({...EventModule, name: "EventModule", version: eventPkg.version}), true);
     });
     it("createHTMLElement", () => {
         const parent = document.getElementById("div-test");
