@@ -7,6 +7,8 @@
 !dom-module/.gitignore
 !event-module/
 !event-module/.gitignore
+!core-module/
+!core-module/.gitignore
 
 !.github
 !.github/**
