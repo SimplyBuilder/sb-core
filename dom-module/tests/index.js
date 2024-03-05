@@ -3,6 +3,7 @@
 import {describe, it} from "node:test";
 import {deepEqual, equal, notEqual, ok} from "node:assert";
 import {DomModule} from "#sb-core-dom-module";
+import {EventModule} from "../../event-module/lib/main.js";
 
 import { createRequire } from "node:module";
 
@@ -19,6 +20,8 @@ global['document'] = dom.window.document;
 global['HTMLElement'] = dom.window.HTMLElement;
 global['SVGElement'] = dom.window.SVGElement;
 const testElement = document.createElement("div");
+testElement.setAttribute("id", "div-test");
+document.body.appendChild(testElement);
 
 describe("import and tests", () => {
     it("check object", () => {
@@ -55,31 +58,74 @@ describe("import and tests", () => {
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1"}), true);
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1.0.1"}), true);
         notEqual(DomModule.domModuleExtends({name: "EventModule", version: "0.1.1"}), true);
+        equal(DomModule.domModuleExtends(EventModule), true);
     });
-    it("createHTMLElement and createSVGElement", () => {
-        //DomModule.createHTMLElement({parent: testElement, element});
-        //DomModule.createSVGElement({parent: testElement, element, shadow});
+    it("createHTMLElement", () => {
+        const parent = document.getElementById("div-test");
+        const result = DomModule.createHTMLElement({
+            parent,
+            element: {
+                "type": "section",
+                "attr": [{"name": "id", "value": "test-create1"}],
+                "attrNS": [],
+                "dataset": [{"name": "state", "value": "simply-builder.main1"}]
+            }
+        });
+        ok(result);
+        const element = document.getElementById("test-create1");
+        ok(typeof element === "object");
+        ok(typeof element.dataset === "object");
+        ok(element instanceof HTMLElement);
+        equal(element.dataset.state, "simply-builder.main1");
+        equal(element.tagName.toLowerCase(), "section");
+        DomModule.removeElement(element);
+        equal(document.getElementById("test-create1"), null);
+    });
+    it("createSVGElement", () => {
+        const parent = document.getElementById("div-test");
+        const result = DomModule.createSVGElement({
+            parent,
+            "element": {
+                "type": "svg",
+                "element": "path",
+                "attr": [
+                    {"name": "id", "value": "test-create2"},
+                    {"name": "d", "value": "M23 9v2h-2v7a3 3 0 01-3 3h-4v-6h-4v6H6a3 3 0 01-3-3v-7H1V9l11-7z"}
+                ],
+                "attrNS": [{"name": "viewBox", "value": "0 0 24 24"}],
+                "dataset": [{"name": "state", "value": "simply-builder.main2"}]
+            }
+        });
+        ok(result);
+        const element = document.getElementById("test-create2");
+        ok(typeof element === "object");
+        ok(typeof element.dataset === "object");
+        ok(element instanceof SVGElement);
+        equal(element.dataset.state, "simply-builder.main2");
+        equal(element.tagName.toLowerCase(), "svg");
+        DomModule.removeElement(element);
+        equal(document.getElementById("test-create2"), null);
     });
     it("createFromStruct", () => {
         const result = DomModule.createFromStruct({
             struct: {
                 "element": "section",
                 "attr": {
-                    "id": "test-create",
+                    "id": "test-create3",
                 },
                 "dataset": {
-                    "state": "simply-builder.main"
+                    "state": "simply-builder.main3"
                 },
             }
         });
         ok(result);
-        const element = document.getElementById("test-create");
+        const element = document.getElementById("test-create3");
         ok(typeof element === "object");
         ok(typeof element.dataset === "object");
         ok(element instanceof HTMLElement);
-        equal(element.dataset.state, "simply-builder.main");
+        equal(element.dataset.state, "simply-builder.main3");
         equal(element.tagName.toLowerCase(), "section");
         DomModule.removeElement(element);
-        equal(document.getElementById("test-create"), null);
+        equal(document.getElementById("test-create3"), null);
     });
 });
