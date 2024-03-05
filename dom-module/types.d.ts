@@ -2,11 +2,11 @@
  * @exports DomModule
  */
 export const DomModule: Readonly<{
-    name: any;
-    version: any;
-    domModuleExtends: (data: any) => boolean;
-    createHTMLElement: (data: any) => HTMLElement | undefined;
-    createSVGElement: (data: any) => SVGElement | undefined;
+    name: string;
+    version: string;
+    domModuleExtends: (data: object) => boolean;
+    createHTMLElement: (data: object) => HTMLElement | undefined;
+    createSVGElement: (data: object) => SVGElement | undefined;
     addElementToStore: (data: {
         key: string;
         value: HTMLElement;
@@ -14,7 +14,7 @@ export const DomModule: Readonly<{
     getElementFromStore: (key: string) => HTMLElement;
     removeElementFromStore: (key: string, mode?: number) => void;
     createFromStruct: (data: {
-        struct: any;
+        struct: object;
         parent?: HTMLElement;
     }) => boolean;
     removeElement: (element: HTMLElement | SVGAElement) => void;
