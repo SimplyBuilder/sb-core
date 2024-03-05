@@ -4,7 +4,8 @@
   "packageManager": "pnpm@8.15.4",
   "workspaces": [
     "event-module",
-    "dom-module"
+    "dom-module",
+    "core-module"
   ],
   "scripts": {
     "publish:test": "pnpm publish -r --dry-run --no-git-checks",
