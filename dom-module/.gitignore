@@ -25,3 +25,4 @@
 !package.json
 !tsconfig.json
 !rollup.config.js
+!rollup-core.config.js
