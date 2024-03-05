@@ -4,16 +4,17 @@ import {setAttr, setAttrNS} from "./attribute.js";
 import {setData} from "./dataset.js";
 
 /**
-* @function buildElementNS
-* @memberof module:DomComponentModule
-* @param {Object} data
-* @param {string} data.type - The type of the element to create (e.g., 'div', 'span').
+ * @private
+ * @function buildElementNS
+ * @memberof module:DomComponentModule
+ * @param {Object} data
+ * @param {string} data.type - The type of the element to create (e.g., 'div', 'span').
  * @param {Array} [data.attr]
  * @param {Array} [data.attrNS]
  * @param {Array} [data.dataset]
  * @param {Object} data.DomStore
-* @returns {undefined|SVGElement} - The created namespaced element, or undefined if an error occurs.
-*/
+ * @returns {undefined|SVGElement} - The created namespaced element, or undefined if an error occurs.
+ */
 const buildElementNS = (data = {}) => {
     try {
         const { dataset, attrNS, attr, type, DomStore = {} } = data;
@@ -28,15 +29,16 @@ const buildElementNS = (data = {}) => {
     return undefined;
 };
 /**
-* @function buildElement
-* @memberof module:DomComponentModule
-* @param {Object} data
-* @param {string} data.type - The type of the element to create (e.g., 'div', 'span').
-* @param {Array} [data.attr]
-* @param {Array} [data.dataset]
-* @param {Object} data.DomStore
-* @returns {undefined|HTMLElement} - The created HTML element, or undefined if an error occurs.
-*/
+ * @private
+ * @function buildElement
+ * @memberof module:DomComponentModule
+ * @param {Object} data
+ * @param {string} data.type - The type of the element to create (e.g., 'div', 'span').
+ * @param {Array} [data.attr]
+ * @param {Array} [data.dataset]
+ * @param {Object} data.DomStore
+ * @returns {undefined|HTMLElement} - The created HTML element, or undefined if an error occurs.
+ */
 const buildElement = (data = {}) => {
     try {
         const {dataset, attr, type, DomStore = {}} = data;
@@ -50,6 +52,7 @@ const buildElement = (data = {}) => {
     return undefined;
 };
 /**
+ * @private
  * @function createShadowElementFromString
  * @memberof module:DomComponentModule
  * @param {Object} data
@@ -64,6 +67,7 @@ const createShadowElementFromString = (data = {}) => {
     });
 };
 /**
+ * @private
  * @function createShadowElementFromObject
  * @memberof module:DomComponentModule
  * @param {Object} data
@@ -96,6 +100,7 @@ const chooseCreateShadow = {
     "object": ({shadowRootElement, shadow}) => createShadowElementFromObject({shadowRootElement, shadow})
 };
 /**
+ * @private
  * @function createShadowElement
  * @memberof module:DomComponentModule
  * @param {Object} data
