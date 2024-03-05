@@ -20,6 +20,7 @@
   "scripts": {
     "clean": "rm -rf lib && rm -rf build",
     "build": "pnpm run clean && rollup -c",
+    "build:core": "pnpm run clean && rollup -c rollup-core.config.js",
     "see-pack": "tar tvf $(npm pack)",
     "test": "pnpm run build && node --test tests/index.js",
     "prepublish": "pnpm test",
