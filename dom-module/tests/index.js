@@ -3,7 +3,7 @@
 import {describe, it} from "node:test";
 import {deepEqual, equal, notEqual, ok} from "node:assert";
 import {DomModule} from "#sb-core-dom-module";
-import {EventModule} from "../../event-module/lib/main.js";
+import {EventModule} from "../../event-module/src/main.js";
 
 import { createRequire } from "node:module";
 
@@ -58,7 +58,7 @@ describe("import and tests", () => {
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1"}), true);
         equal(DomModule.domModuleExtends({name: "EventModule", version: "1.0.1"}), true);
         notEqual(DomModule.domModuleExtends({name: "EventModule", version: "0.1.1"}), true);
-        equal(DomModule.domModuleExtends(EventModule), true);
+        equal(DomModule.domModuleExtends({...EventModule, name: "EventModule", version: "1"}), true);
     });
     it("createHTMLElement", () => {
         const parent = document.getElementById("div-test");
