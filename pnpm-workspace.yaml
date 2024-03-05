@@ -1,3 +1,4 @@
 packages:
   - 'event-module'
   - 'dom-module'
+  - 'core-module'
