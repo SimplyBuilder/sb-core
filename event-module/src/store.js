@@ -1,18 +1,32 @@
 'use strict';
+/**
+ * Manages the storage and lifecycle of event listeners attached to DOM elements.
+ * This module provides functionalities to add, clear, and remove event listeners
+ * in a centralized manner, allowing for efficient event handling and cleanup.
+ *
+ * @module EventStoreModule
+ */
 
 /**
+ * Stores references to DOM elements along with their associated event handlers.
+ * This Map object serves as a registry for event listeners, facilitating the addition,
+ * removal, and management of events for specific elements.
+ *
  * @private
  * @typedef {Map<Element, Array>} EventStoreActionRef
- * @memberof module:EventStoreModule
  */
 const ActionRefStore = new Map();
 
 /**
+ * Clears the event listeners associated with a given DOM element.
+ * Optionally forces the removal of the element from the ActionRefStore
+ * and removes the 'listener' attribute from the element.
+ *
  * @function clearEvent
  * @memberof module:EventStoreModule
- * @param {HTMLElement} element
- * @param {boolean} force
- * @returns {boolean}
+ * @param {HTMLElement} element - The DOM element from which to clear events.
+ * @param {boolean} force - Whether to forcibly clear the event, ignoring the length check.
+ * @returns {boolean} - Returns true upon successful removal of the event.
  */
 const clearEvent = (element, force = false) => {
     if(force || (ActionRefStore.get(element).length === 0)) {
@@ -22,15 +36,13 @@ const clearEvent = (element, force = false) => {
     return true;
 };
 /**
+ * Registers an event listener for a specified DOM element and stores its reference.
+ * Allows associating additional metadata, such as eventId or nodeId, with the event.
+ *
  * @function addEventToStore
  * @memberof module:EventStoreModule
- * @param {Object} data - The object containing the necessary data to register the event.
- * @param {HTMLElement} data.element - The element to which the event listener will be added.
- * @param {string} data.type - The type of event to listen for.
- * @param {Function} data.handler - The handler function to execute when the event occurs.
- * @param {string} [data.nodeId] - An optional ID associated with the element.
- * @param {string} [data.eventId] - An optional ID associated with the event.
- * @returns {boolean}
+ * @param {Object} data - Object containing event registration details.
+ * @returns {boolean} - Returns true if the event was successfully registered.
  */
 const addEventToStore = (data) => {
     try {
@@ -53,11 +65,16 @@ const addEventToStore = (data) => {
     }
     return false;
 };
+
 /**
+ * Removes all event listeners associated with a given DOM element.
+ * Utilizes the ActionRefStore to identify and remove each registered event listener,
+ * then optionally clears the element from the store.
+ *
  * @function removeAllEventsFromStore
  * @memberof module:EventStoreModule
- * @param {HTMLElement} element - The element for which to remove all associated event handlers.
- * @returns {boolean}
+ * @param {HTMLElement} element - The DOM element for which to remove all events.
+ * @returns {boolean} - Returns true upon successful removal of all events.
  */
 const removeAllEventsFromStore = (element) => {
     try {
@@ -80,10 +97,14 @@ const removeAllEventsFromStore = (element) => {
     return false;
 };
 /**
+ * Removes a specific event listener identified by its eventId from a DOM element.
+ * If the eventId is found within the stored references, it is removed and the element
+ * is optionally cleared from the ActionRefStore based on remaining event listeners.
+ *
  * @function removeEventIdFromStore
  * @memberof module:EventStoreModule
- * @param {Object} data
- * @returns {boolean}
+ * @param {Object} data - Object containing the element and eventId to remove.
+ * @returns {boolean} - Returns true if the event was successfully removed.
  */
 const removeEventIdFromStore = (data = {}) => {
     const {element, eventId} = data;
@@ -111,8 +132,12 @@ const removeEventIdFromStore = (data = {}) => {
 };
 
 /**
+ * The EventStoreModule object, encapsulating functionalities for event listener management.
+ * This module facilitates the centralized management of event listeners, allowing for
+ * efficient addition, removal, and cleanup of events attached to DOM elements.
+ *
  * @private
- * @module EventStoreModule
+ * @type {Object}
  */
 const EventStoreModule = Object.freeze({
     addEventToStore,
