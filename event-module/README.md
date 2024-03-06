@@ -4,7 +4,7 @@ The `@jamilservices/sb-core-event-module` is a powerful and flexible library des
 
 ### Installation
 
-To install the event module, run the following command in your project directory:
+You can easily install the Event module in your project using npm, pnpm or yarn:
 
 #### Using npm
 

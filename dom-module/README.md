@@ -11,7 +11,8 @@ The `@jamilservices/sb-core-dom-module` is a JavaScript library designed to simp
 
 ### Installation
 
-You can install the DOM module using npm or yarn as follows:
+You can easily install the DOM module in your project using npm, pnpm or yarn:
+
 
 #### Using npm
 
