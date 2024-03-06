@@ -9,9 +9,9 @@ Welcome to SimplyBuilder's Core JavaScript Modules - a collection of three power
 [![SimplyBuilder - sb-core](https://img.shields.io/static/v1?label=SimplyBuilder&message=sb-core&color=blue&logo=github)](https://github.com/SimplyBuilder/sb-core)
 [![GitHub License](https://img.shields.io/github/license/SimplyBuilder/sb-core)](https://github.com/SimplyBuilder/sb-core/blob/main/LICENSE)
 
-[![GitHub package.json sb-core-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=core-module%2Fpackage.json&label=core%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/core-module/package.json#L4)
-[![GitHub package.json sb-dom-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=dom-module%2Fpackage.json&label=dom%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/dom-module/package.json#L4)
-[![GitHub package.json sb-event-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=event-module%2Fpackage.json&label=event%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/event-module/package.json#L4)
+[![GitHub package.json sb-core-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=core-module%2Fpackage.json&label=core%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/core-module/package.json#L5)
+[![GitHub package.json sb-dom-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=dom-module%2Fpackage.json&label=dom%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/dom-module/package.json#L5)
+[![GitHub package.json sb-event-module](https://img.shields.io/github/package-json/v/SimplyBuilder/sb-core?filename=event-module%2Fpackage.json&label=event%20module)](https://github.com/SimplyBuilder/sb-core/blob/main/event-module/package.json#L5)
 [![GitHub Release](https://img.shields.io/github/v/release/SimplyBuilder/sb-core)](https://github.com/SimplyBuilder/sb-core/releases)
 [![Test with Node.js](https://img.shields.io/badge/Node.js->=20_10-blue?logo=node.js&logoColor=white)](https://nodejs.org)
 ![GitHub top language](https://img.shields.io/github/languages/top/SimplyBuilder/sb-core)
