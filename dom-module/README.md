@@ -1,7 +1,23 @@
 # @jamilservices/sb-core-dom-module
 
 The `@jamilservices/sb-core-dom-module` is a JavaScript library designed to simplify DOM manipulation and enhance frontend development workflows. It offers a collection of utilities for creating, querying, and managing HTML and SVG elements, with support for shadow DOM operations.
+# 
+[![SimplyBuilder](https://img.shields.io/badge/Author-Gerv%C3%A1sio_J%C3%BAnior-brightgreen?style=flat-square&color=%23fedcba)](https://github.com/jamilservicos)
+[![SimplyBuilder](https://img.shields.io/badge/SimplyBuilder-Module-brightgreen?style=flat-square&label=SimplyBuilder&color=%23fedcba)](https://simplybuilder.github.io)
+[![SimplyBuilder - sb-core](https://img.shields.io/static/v1?label=SimplyBuilder&message=sb-core-dom-module&color=blue&logo=github)](https://github.com/SimplyBuilder/sb-core/dom-module)
+[![GitHub License](https://img.shields.io/github/license/SimplyBuilder/sb-core)](LICENSE)
 
+#         
+### 🤖 Documented by Artificial Intelligence
+
+This project takes a leap into the future of code documentation and maintenance. 🚀            
+All text commits, Readme details and **[JSDoc](https://jsdoc.app/)** comments were created automatically by the advanced AI of **ChatGPT**, showcasing a seamless integration between human creativity and artificial intelligence.
+
+By leveraging ChatGPT's capabilities, we've ensured that the documentation is not only comprehensive but also up-to-date with the latest standards. This collaboration marks a step forward in our pursuit of innovative solutions, making our codebase more accessible and easier to understand for developers worldwide.
+
+Embrace the future of coding with us. 🌟
+
+#
 ### Features
 
 - Easy creation and management of HTML and SVG elements.
