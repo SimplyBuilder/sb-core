@@ -4,8 +4,8 @@ The `@jamilservices/sb-core-module` integrates the functionalities of both `Even
 # 
 [![SimplyBuilder](https://img.shields.io/badge/Author-Gerv%C3%A1sio_J%C3%BAnior-brightgreen?style=flat-square&color=%23fedcba)](https://github.com/jamilservicos)
 [![SimplyBuilder](https://img.shields.io/badge/SimplyBuilder-Module-brightgreen?style=flat-square&label=SimplyBuilder&color=%23fedcba)](https://simplybuilder.github.io)
-[![SimplyBuilder - sb-core](https://img.shields.io/static/v1?label=SimplyBuilder&message=sb-core-module&color=blue&logo=github)](https://github.com/SimplyBuilder/sb-core/core-module)
-[![GitHub License](https://img.shields.io/github/license/SimplyBuilder/sb-core)](LICENSE)
+[![SimplyBuilder - sb-core](https://img.shields.io/static/v1?label=SimplyBuilder&message=sb-core-module&color=blue&logo=github)](https://github.com/SimplyBuilder/sb-core/tree/main/core-module)
+[![GitHub License](https://img.shields.io/github/license/SimplyBuilder/sb-core)](https://github.com/SimplyBuilder/sb-core/tree/main/core-module/LICENSE)
 
 #         
 ### 🤖 Documented by Artificial Intelligence
@@ -130,11 +130,11 @@ if (storedElement) {
 
 ### Contribution Guidelines
 
-Interested in contributing? We welcome your contributions to enhance the backend capabilities of `@jamilservices/sb-core-module`. Please check our [Contribution Guidelines](CONTRIBUTING.md) for more details.
+Interested in contributing? We welcome your contributions to enhance the backend capabilities of `@jamilservices/sb-core-module`. Please check our [Contribution Guidelines](https://github.com/SimplyBuilder/sb-core/tree/main/core-module/CONTRIBUTING.md) for more details.
 
 ### License
 
-`@jamilservices/sb-core-module` is available under the [MIT License](LICENSE) by [@jamilservicos](https://github.com/jamilservicos).
+`@jamilservices/sb-core-module` is available under the [MIT License](https://github.com/SimplyBuilder/sb-core/tree/main/core-module/LICENSE) by [@jamilservicos](https://github.com/jamilservicos).
 
 - You are free to modify and reuse the code.
 - The original license must be included with copies of this software.
