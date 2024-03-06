@@ -115,11 +115,11 @@ The `@jamilservices/sb-core-dom-module` offers several functions to work with th
 
 ### Contribution Guidelines
 
-Interested in contributing? We welcome your contributions to enhance the backend capabilities of `@jamilservices/sb-core-dom-module`. Please check our [Contribution Guidelines](/CONTRIBUTING.md) for more details.
+Interested in contributing? We welcome your contributions to enhance the backend capabilities of `@jamilservices/sb-core-dom-module`. Please check our [Contribution Guidelines](CONTRIBUTING.md) for more details.
 
 ### License
 
-`@jamilservices/sb-core-dom-module` is available under the [MIT License](/LICENSE) by [@jamilservicos](https://github.com/jamilservicos).
+`@jamilservices/sb-core-dom-module` is available under the [MIT License](LICENSE) by [@jamilservicos](https://github.com/jamilservicos).
 
 - You are free to modify and reuse the code.
 - The original license must be included with copies of this software.
