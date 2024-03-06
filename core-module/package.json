@@ -2,7 +2,7 @@
   "name": "@jamilservices/sb-core-module",
   "package": "@jamilservices/sb-core-module",
   "description": "Simply Builder Core Module - Dom Manager and Store",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "module": "lib/main.min.js",
   "type": "module",
   "types": "./types.d.ts",
