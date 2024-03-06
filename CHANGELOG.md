@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.3
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.2...v0.0.3)
+
+### 💅 Refactors
+
+- **README.md:** Update README.md with new contribution guidelines for Core, Dom, and Event Modules (e5f1485)
+- **README.md:** Update README.md  for Core, Dom, and Event Modules (731f7d9)
+- **README.md:** Update README.md  for Core, Dom, and Event Modules (b8d0625)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.2
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/empty...v0.0.2)
