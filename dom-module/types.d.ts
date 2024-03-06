@@ -1,4 +1,10 @@
 /**
+ * The DomModule provides a comprehensive interface for interacting with the DOM in a structured and efficient manner.
+ * It encapsulates functionality for creating, manipulating, and managing HTML and SVG elements, including support for shadow DOM operations.
+ * This module is designed to streamline the process of DOM element creation, retrieval, and manipulation with an emphasis on ease of use
+ * and integration within larger web applications or libraries. The DomModule serves as a foundational building block for web development,
+ * offering a robust set of tools for developers to craft dynamic and responsive user interfaces.
+ *
  * @exports DomModule
  */
 export const DomModule: Readonly<{

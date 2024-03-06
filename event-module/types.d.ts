@@ -2,6 +2,8 @@
  * Describes the structure and functionalities provided by the EventModule.
  * This module manages event handlers and custom events, allowing for efficient
  * event management in applications.
+ *
+ * @exports EventModule
  */
 export const EventModule: Readonly<{
     /** The name of the EventModule. */

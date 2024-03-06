@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * Provides functionalities for DOM manipulation, including creating, managing,
  * and removing HTML and SVG elements. It integrates with event management for enhanced interaction.
@@ -108,8 +109,12 @@ const removeElementFromStore = (key, mode = 1) => {
  * @param {Object} data - Data needed to create the HTML element.
  * @returns {HTMLElement|undefined} - The created HTML element, or undefined on failure.
  */
-const createHTMLElement = (data) => {
-   return component.createHTMLElement({...data, DomStore: {addElementToStore, getElementFromStore}});
+const createHTMLElement = (data = {}) => {
+   // noinspection JSCheckFunctionSignatures
+   return component.createHTMLElement({
+      ...data,
+      DomStore: {addElementToStore, getElementFromStore}
+   });
 };
 /**
  * Creates an SVG element based on specified data, including attributes and event listeners.
@@ -119,8 +124,12 @@ const createHTMLElement = (data) => {
  * @param {Object} data - Data needed to create the SVG element.
  * @returns {SVGElement|undefined} - The created SVG element, or undefined on failure.
  */
-const createSVGElement = (data) => {
-   return component.createSVGElement({...data, DomStore: {addElementToStore, getElementFromStore}});
+const createSVGElement = (data = {}) => {
+   // noinspection JSCheckFunctionSignatures
+   return component.createSVGElement({
+      ...data,
+      DomStore: {addElementToStore, getElementFromStore}
+   });
 };
 /**
  * Dynamically creates child elements for a given parent element, based on a structural definition.
