@@ -10,8 +10,7 @@ import store from "./store.js";
 import component from "./component.js";
 
 /**
- * Internal configuration for the EventModule, specifying the library's name and version.
- * This object is not exposed outside the module, serving only for internal reference and configuration purposes.
+ * Holds the application's metadata and registers modules for version compatibility.
  *
  * @ignore
  * @private

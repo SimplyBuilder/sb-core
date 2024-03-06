@@ -1,16 +1,44 @@
 'use strict';
+/**
+ *
+ * The DomStoreModule is a utility module designed for efficient management of DOM elements within JavaScript applications.
+ * By providing a simple yet powerful interface for adding, retrieving, and removing elements from a centralized store,
+ * it facilitates better organization and manipulation of DOM elements, especially in dynamic and complex web applications.
+ * The module internally maintains a key-value store, where each key is a unique identifier associated with a specific DOM element,
+ * allowing for quick access and operations on these elements.
+ *
+ * Primary functionalities include:
+ * - `addElementToStore`: Registers a DOM element with a unique key within the store.
+ * - `getElementFromStore`: Retrieves a DOM element based on its unique key.
+ * - `removeElementFromStore`: Removes a DOM element from the store using its key. Depending on the operation mode,
+ *   it can also manage the removal of associated event listeners, leveraging integration with an EventModule for comprehensive event management.
+ *
+ * This module plays a crucial role in enhancing code modularity, reusability, and maintainability by abstracting direct DOM manipulations
+ * behind a consistent and intuitive API. It's designed to be used in conjunction with other modules like EventModule to provide a complete
+ * solution for DOM and event management in web applications.
+ *
+ * @module DomStoreModule
+ * @private
+ */
 
 /**
+ * Represents a simple key-value store for DOM elements.
+ * This allows elements to be referenced by a unique key,
+ * facilitating easy retrieval and management within the application.
+ *
  * @private
- * @typedef {Object} DomStoreElementRef
+ * @typedef {Object.<string, HTMLElement>} DomStoreElementRef
  * @memberof module:DomStoreModule
  */
 const ElementRefStore = {};
 /**
+ * Adds a DOM element to the store under a specified key.
+ * If the key already exists, the new value will overwrite the existing one.
+ *
  * @function addElementToStore
  * @memberof module:DomStoreModule
- * @param {Object} data - The object containing the key and the DOM element to store.
- * @param {string} data.key - The key under which to store the element.
+ * @param {Object} data - Contains the key-value pair to be added to the store.
+ * @param {string} data.key - The unique identifier for the DOM element.
  * @param {HTMLElement} data.value - The DOM element to be stored.
  */
 const addElementToStore = (data) => {
@@ -23,10 +51,12 @@ const addElementToStore = (data) => {
    }
 };
 /**
+ * Retrieves a DOM element from the store by its key.
+ *
  * @function getElementFromStore
  * @memberof module:DomStoreModule
- * @param {string} key - The key of the element to retrieve.
- * @returns {HTMLElement|undefined} - The retrieved DOM element or undefined if not found or on error.
+ * @param {string} key - The unique identifier for the DOM element.
+ * @returns {HTMLElement|undefined} - The DOM element associated with the key, or undefined if not found.
  */
 const getElementFromStore = (key) => {
    try {
@@ -38,12 +68,15 @@ const getElementFromStore = (key) => {
    return undefined;
 };
 /**
+ * Removes a DOM element from the store by its key.
+ * If mode is set to 1 and an EventModule is provided, this function will also remove all associated event listeners.
+ *
  * @function removeElementFromStore
  * @memberof module:DomStoreModule
- * @param {Object} data - The data object containing parameters for element removal.
+ * @param {Object} data - Contains parameters for the removal operation.
  * @param {string} data.key - The key of the element to be removed.
- * @param {number} [data.mode=1] - The mode of removal, determining if associated events should also be removed.
- * @param {Object} data.EventModule - The event store object for managing associated event listeners.
+ * @param {number} [data.mode=1] - The removal mode. If set to 1, associated events will also be removed.
+ * @param {Object} [data.EventModule] - An optional module for managing event listeners on the element.
  */
 const removeElementFromStore = (data = {}) => {
    const{key, mode = 1, EventModule= {}} = data;
@@ -67,8 +100,11 @@ const removeElementFromStore = (data = {}) => {
 };
 
 /**
+ * Freezes the DomStoreModule to prevent further modifications,
+ * ensuring the integrity and reliability of the element storage mechanism.
+ *
  * @private
- * @module DomStoreModule
+ * @type {Object}
  */
 const DomStoreModule = Object.freeze({
    addElementToStore,

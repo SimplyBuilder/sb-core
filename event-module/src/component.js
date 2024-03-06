@@ -12,6 +12,7 @@
  * to ensure case-insensitive matching.
  *
  * @private
+ * @memberof module:EventComponentModule
  * @type {Object}
  */
 const EventTypes = {};
@@ -20,6 +21,7 @@ const EventTypes = {};
  * that are executed when the corresponding event type is triggered.
  *
  * @private
+ * @memberof module:EventComponentModule
  * @type {Object}
  */
 const EventActions = {};
@@ -76,6 +78,7 @@ const eventUnregister = (name) => {
  * This module provides a structured way to handle custom events, allowing for easy registration, execution,
  * and removal of event-related logic.
  *
+ * @private
  * @type {Object}
  */
 const EventComponentModule = Object.freeze({
