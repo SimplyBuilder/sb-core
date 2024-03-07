@@ -142,6 +142,17 @@ if (storedElement) {
     - **Parameters:**
         - `element`: The DOM element to be removed.
 
+- **`eventRegister(name: string, fn: function): void`**
+    - Registers a custom event type and its associated action.
+    - **Parameters:**
+        - `name`: A string identifier used to relate the function to the event.
+        - `fn`: Function that will be called in the event.
+
+- **`eventUnregister(name: string): void`**
+    - Unregisters a custom event type and removes its associated action.
+    - **Parameters:**
+        - `name`: The same string identifier used to relate the function to the event.
+
 
 
 ### Contribution Guidelines
