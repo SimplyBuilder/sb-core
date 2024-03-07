@@ -36,4 +36,15 @@ export const CoreModule: Readonly<{
      * @param element The DOM element to remove.
      */
     removeElement: (element: HTMLElement | SVGAElement) => void;
+    /**
+     * Registers a custom event type with an associated handler function.
+     * @param name - The name of the custom event type to register.
+     * @param fn - The handler function associated with the event type.
+     */
+    eventRegister: (name: string, fn?: Function) => boolean;
+    /**
+     * Unregisters a custom event type and removes its associated handler.
+     * @param name - The name of the custom event type to unregister.
+     */
+    eventUnregister: (name: string) => boolean;
 }>;
