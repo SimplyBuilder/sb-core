@@ -25,13 +25,16 @@ describe("import and tests", () => {
         ok(typeof CoreModule === "object");
         //
         deepEqual(Object.keys(CoreModule), ['name', 'version',
-            'getElementFromStore', 'createFromStruct', 'removeElement']);
+            'getElementFromStore', 'createFromStruct', 'removeElement',
+            'eventRegister', 'eventUnregister']);
         //
         ok(typeof CoreModule.name === "string");
         ok(typeof CoreModule.version === "string");
         ok(typeof CoreModule.getElementFromStore === "function");
         ok(typeof CoreModule.createFromStruct === "function");
         ok(typeof CoreModule.removeElement === "function");
+        ok(typeof CoreModule.eventRegister === "function");
+        ok(typeof CoreModule.eventUnregister === "function");
     });
     it("check name and version", () => {
         equal(CoreModule.name, "CoreModule");
@@ -58,5 +61,16 @@ describe("import and tests", () => {
         equal(element.tagName.toLowerCase(), "section");
         CoreModule.removeElement(element);
         equal(document.getElementById("test-create"), null);
+    });
+    it("eventRegister and eventUnregister", () => {
+        const testKeyElement = "simply-builder.testEvent";
+        const testFnElement = (e) => {
+            if(e) return true;
+        };
+        equal(CoreModule.eventUnregister(testKeyElement), false);
+        equal(CoreModule.eventRegister(testKeyElement, testFnElement), true);
+        equal(CoreModule.eventRegister(testKeyElement, testFnElement), false);
+        equal(CoreModule.eventUnregister(testKeyElement), true);
+        equal(CoreModule.eventUnregister(testKeyElement), false);
     });
 });
