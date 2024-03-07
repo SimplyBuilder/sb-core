@@ -13,6 +13,15 @@ import {EventModule} from "../../event-module/lib/main.min.js";
 import {DomModule} from "../../dom-module/lib/main.min.js";
 
 /**
+ * Destructures and imports utility functions from the EventModule. These functions include
+ * eventRegister and eventUnregister, which are essential for Event manager.
+ *
+ * @private
+ * @ignore
+ */
+const {eventRegister, eventUnregister} = EventModule;
+
+/**
  * Destructures and imports utility functions from the DomModule. These functions include
  * getElementFromStore, createFromStruct, and removeElement, which are essential for DOM manipulation.
  *
@@ -58,9 +67,10 @@ const {name, version} = internalStore.app;
 /**
  * Freezes the module object to prevent further modifications, ensuring its integrity.
  *
- * @exports DomModule
+ * @exports CoreModule
  */
 export const CoreModule = Object.freeze({
     name, version,
-    getElementFromStore, createFromStruct, removeElement
+    getElementFromStore, createFromStruct, removeElement,
+    eventRegister, eventUnregister
 });
