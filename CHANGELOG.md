@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.5
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.4...v0.0.5)
+
+### 🚀 Enhancements
+
+- Update version to 0.0.5 in package.json and add event handling functions in core-module. (c28092f)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.4
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.4...v0.0.4)
