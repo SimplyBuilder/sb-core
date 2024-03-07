@@ -173,7 +173,8 @@ const createShadowElement = (data = {}) => {
 const createHTMLElement = (data = {}) => {
     try {
         const {parent, element, shadow, DomStore = {}} = data;
-        let childElement = buildElement(element);
+        // noinspection JSCheckFunctionSignatures
+        let childElement = buildElement({...element, DomStore});
         if (parent instanceof HTMLElement || parent instanceof SVGElement || parent instanceof ShadowRoot) {
             parent.appendChild(childElement);
         } else if (typeof parent === "object") {
