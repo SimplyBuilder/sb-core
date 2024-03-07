@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.0.3
+
+[compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.4...v1.0.3)
+
+### 🚀 Enhancements
+
+- **core-module:** Add event handling functions ([b04ef10](https://github.com/SimplyBuilder/sb-core/commit/b04ef10))
+- **core-module:** Add eventRegister and eventUnregister methods ([d1bd906](https://github.com/SimplyBuilder/sb-core/commit/d1bd906))
+- Add eventRegister and eventUnregister functions to CoreModule ([2f476b0](https://github.com/SimplyBuilder/sb-core/commit/2f476b0))
+
+### 📖 Documentation
+
+- Update CDN links in README files ([41f74c9](https://github.com/SimplyBuilder/sb-core/commit/41f74c9))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.2
 
 [compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.2...v1.0.2)
