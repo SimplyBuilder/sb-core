@@ -43,6 +43,10 @@ Welcome to SimplyBuilder's Core JavaScript Modules - a collection of three power
 ![Safari](https://img.shields.io/badge/Safari-FF1B2D?logo=Safari&logoColor=white)
 ![Opera](https://img.shields.io/badge/Opera-FF1B2D?logo=Opera&logoColor=white)
 
+### static example on StackBlitz without event
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-xlcwvj?embed=1&file=script.js&hideExplorer=1&hideNavigation=1)
+
+### static example on StackBliz with event
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-xlcwvj?embed=1&file=script.js&hideExplorer=1&hideNavigation=1)
 
 #         
