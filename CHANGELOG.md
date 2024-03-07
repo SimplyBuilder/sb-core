@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.6
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.5...v0.0.6)
+
+### 💅 Refactors
+
+- **dom-module:** Update createHTMLElement function to pass DomStore to buildElement function (66a64e9)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.5
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.4...v0.0.5)
