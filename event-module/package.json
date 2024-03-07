@@ -2,7 +2,7 @@
   "name": "@jamilservices/sb-core-event-module",
   "package": "@jamilservices/sb-core-event-module",
   "description": "Simply Builder Core Module - Event Manager and Store",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "module": "lib/main.min.js",
   "type": "module",
   "types": "./types.d.ts",
