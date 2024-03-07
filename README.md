@@ -114,6 +114,41 @@ npm install @jamilservices/sb-core-dom-module
 npm install @jamilservices/sb-core-module
 ```
 
+### ESM Import Module
+
+#### CDN:
+You can use the following CDN links to include the module:
+
+**For EventModule:**
+
+~~~text
+https://cdn.skypack.dev/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+
+https://cdn.jsdelivr.net/npm/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+
+https://unpkg.com/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+~~~  
+
+
+**For DomModule:**
+
+~~~text
+https://cdn.skypack.dev/@jamilservices/sb-core-dom-module@latest/lib/main.min.js
+
+https://cdn.jsdelivr.net/npm/@jamilservices/sb-core-dom-module@latest/lib/main.min.js
+
+https://unpkg.com/@jamilservices/sb-core-dom-module@latest/lib/main.min.js
+~~~  
+
+**For CoreModule (includes both EventModule and DomModule):**
+
+~~~text
+https://cdn.skypack.dev/@jamilservices/sb-core-module@latest/lib/main.min.js
+
+https://cdn.jsdelivr.net/npm/@jamilservices/sb-core-module@latest/lib/main.min.js
+
+https://unpkg.com/@jamilservices/sb-core-module@latest/lib/main.min.js
+~~~  
 
 
 ### Contribution Guidelines

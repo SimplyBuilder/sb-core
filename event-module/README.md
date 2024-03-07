@@ -40,7 +40,22 @@ pnpm add @jamilservices/sb-core-event-module
 
 ```bash
 yarn add @jamilservices/sb-core-event-module
-```
+```            
+
+> [!NOTE]
+> This will add the `@jamilservices/sb-core-event-module` as a development dependency in your project.
+
+### ESM Import Module             
+
+#### CDN:
+You can use the following CDN links to include the module:
+~~~text
+https://cdn.skypack.dev/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+
+https://cdn.jsdelivr.net/npm/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+
+https://unpkg.com/@jamilservices/sb-core-event-module@latest/lib/main.min.js
+~~~  
 
 
 ### Usage
