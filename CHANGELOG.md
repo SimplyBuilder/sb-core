@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v0.0.4
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.4...v0.0.4)
+
+### 🚀 Enhancements
+
+- **core-module:** Add event handling functions (b04ef10)
+- **core-module:** Add eventRegister and eventUnregister methods (d1bd906)
+- Add eventRegister and eventUnregister functions to CoreModule (2f476b0)
+
+### 📖 Documentation
+
+- Update CDN links in README files (41f74c9)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.3
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.2...v0.0.3)
