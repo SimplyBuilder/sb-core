@@ -7,7 +7,7 @@
 
 ### 🚀 Enhancements
 
-- Update version to 0.0.5 in package.json and add event handling functions in core-module. (c28092f)
+- Update version to 0.0.5 in package.json and add event handling functions in core-module. (e3ca2d71)
 
 ### ❤️ Contributors
 
