@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v1.0.5
+
+[compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.7...v1.0.5)
+
+### 🚀 Enhancements
+
+- Freeze attachShadow method to maintain compatibility with SimplyBuilderAttachShadow. ([393f9fe](https://github.com/SimplyBuilder/sb-core/commit/393f9fe))
+- **dom-module:** Add SimplyBuilderAttachShadow functionality ([77c96b4](https://github.com/SimplyBuilder/sb-core/commit/77c96b4))
+- **dom-module:** Add test for creating duplicate elements ([e40babf](https://github.com/SimplyBuilder/sb-core/commit/e40babf))
+- **core-module:** Add test for creating duplicate elements ([bd40be1](https://github.com/SimplyBuilder/sb-core/commit/bd40be1))
+
+### 🩹 Fixes
+
+- Adjust store to check for existing element refs before adding ([55e94a0](https://github.com/SimplyBuilder/sb-core/commit/55e94a0))
+- **dom-module:** Fix error handling in dataset.js ([587bbdf](https://github.com/SimplyBuilder/sb-core/commit/587bbdf))
+- Fix conditional statement in buildElement function ([3e6dad2](https://github.com/SimplyBuilder/sb-core/commit/3e6dad2))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.4
 
 [compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.5...v1.0.4)
