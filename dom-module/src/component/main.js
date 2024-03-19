@@ -64,7 +64,6 @@ const buildElement = (data = {}) => {
         if (dataset?.length) if(typeof setData({element, dataset, DomStore}) === "object") return undefined;
         return element;
     } catch (err) {
-        console.log("teste buildElement")
         console.error(err);
     }
     return undefined;
