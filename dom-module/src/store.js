@@ -44,7 +44,11 @@ const ElementRefStore = {};
 const addElementToStore = (data) => {
    try {
       const {key, value} = data;
-      if(key && value) ElementRefStore[key.toString()] = value;
+      if(key && value) {
+         if(typeof ElementRefStore[key.toString()]  === "undefined") {
+            ElementRefStore[key.toString()] = value;
+         } else console.error("Element ref: "+ key.toString() +" already exists registered!");
+      }
    } catch (err) {
       console.log("Unable to add element:", data);
       console.error(err);
