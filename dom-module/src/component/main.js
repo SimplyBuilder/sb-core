@@ -61,9 +61,10 @@ const buildElement = (data = {}) => {
         const {dataset, attr, type, DomStore = {}} = data;
         const element = document.createElement(type);
         if (attr?.length) setAttr({element, attrs: attr});
-        if (dataset?.length) setData({element, dataset, DomStore});
+        if (dataset?.length) if(typeof setData({element, dataset, DomStore}) === "object") return undefined;
         return element;
     } catch (err) {
+        console.log("teste buildElement")
         console.error(err);
     }
     return undefined;
