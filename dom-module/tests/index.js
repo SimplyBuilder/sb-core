@@ -72,6 +72,7 @@ describe("import and tests", () => {
                 "dataset": [{"name": "state", "value": "simply-builder.main1"}]
             }
         });
+
         ok(result);
         const element = document.getElementById("test-create1");
         ok(typeof element === "object");
@@ -79,6 +80,18 @@ describe("import and tests", () => {
         ok(element instanceof HTMLElement);
         equal(element.dataset.state, "simply-builder.main1");
         equal(element.tagName.toLowerCase(), "section");
+        //
+        DomModule.createHTMLElement({
+            parent,
+            element: {
+                "type": "section",
+                "attr": [{"name": "id", "value": "test-create2"}],
+                "attrNS": [],
+                "dataset": [{"name": "state", "value": "simply-builder.main1"}]
+            }
+        });
+       equal(document.getElementById("test-create2"), null);
+        //
         DomModule.removeElement(element);
         equal(document.getElementById("test-create1"), null);
     });
