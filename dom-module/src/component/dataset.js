@@ -43,11 +43,14 @@ export const setData = (data = {}) => {
                 if (item?.name) {
                     element.dataset[item.name.toString()] = item.value.toString();
                     if (item.name === "state" && (typeof DomStore.addElementToStore === "function")) {
-                        DomStore.addElementToStore({key: item.value.toString(), value: element});
+                        if(typeof DomStore.getElementFromStore(item.value.toString()) === "undefined") {
+                            DomStore.addElementToStore({key: item.value.toString(), value: element});
+                        } else throw new Error("data-state: "+ item.value.toString() +", duplicated");
                     }
                 }
             } catch (err) {
-                console.error(err);
+               console.error(err);
+               return {error: err};
             }
         }
     } catch (err) {
