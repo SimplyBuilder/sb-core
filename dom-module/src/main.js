@@ -296,10 +296,17 @@ const removeElementFromStoreOrEvents = (element) => {
  */
 const removeElement = (element) => {
    removeElementFromStoreOrEvents(element);
-   const elements = element.querySelectorAll('[listener="true"]');
-   if (elements.length >= 1) {
-      for (let i = (elements.length - 1); i >= 0; i--) {
-         const item = elements[i];
+   const elementsWithEvent = element.querySelectorAll('[listener="true"]');
+   if (elementsWithEvent.length >= 1) {
+      for (let i = (elementsWithEvent.length - 1); i >= 0; i--) {
+         const item = elementsWithEvent[i];
+         if (item) removeElementFromStoreOrEvents(item);
+      }
+   }
+   const elementsWithoutEvent = element.querySelectorAll('[data-state]');
+   if (elementsWithoutEvent.length >= 1) {
+      for (let i = (elementsWithoutEvent.length - 1); i >= 0; i--) {
+         const item = elementsWithoutEvent[i];
          if (item) removeElementFromStoreOrEvents(item);
       }
    }
