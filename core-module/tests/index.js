@@ -59,6 +59,20 @@ describe("import and tests", () => {
         ok(element instanceof HTMLElement);
         equal(element.dataset.state, "simply-builder.main");
         equal(element.tagName.toLowerCase(), "section");
+        //
+        CoreModule.createFromStruct({
+            struct: {
+                "element": "section",
+                "attr": {
+                    "id": "test-create-duplicate",
+                },
+                "dataset": {
+                    "state": "simply-builder.main"
+                },
+            }
+        });
+        equal(document.getElementById("test-create-duplicate"), null);
+        //
         CoreModule.removeElement(element);
         equal(document.getElementById("test-create"), null);
     });
