@@ -1,6 +1,6 @@
 {
   "package": "sb_utils_core",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "packageManager": "pnpm@8.15.4",
   "workspaces": [
     "event-module",
