@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.0.6
+
+[compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.8...v1.0.6)
+
 ## v1.0.5
 
 [compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.7...v1.0.5)
