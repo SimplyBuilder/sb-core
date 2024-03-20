@@ -19,6 +19,20 @@ import {setAttr, setAttrNS} from "./attribute.js";
 import {setData} from "./dataset.js";
 
 /**
+ * @ignore
+ * @private
+ * @type {symbol}
+ */
+const SimplyBuilderAttachShadowSymbol = Symbol("Simply Builder AttachShadow Freeze");
+const temporaryFrame = document.createElement("Frame");
+temporaryFrame.setAttribute('style', 'display:none!important');
+const SimplyBuilderAttachShadowStore = {
+    [SimplyBuilderAttachShadowSymbol]: temporaryFrame.contentWindow.HTMLElement.prototype.attachShadow
+};
+Object.freeze(SimplyBuilderAttachShadowStore);
+temporaryFrame.parentNode.removeChild(temporaryFrame);
+
+/**
  * Builds an SVG element with the specified type and attributes. It applies both standard and namespace-specific attributes, as well as custom data attributes, facilitating the creation of SVG elements that are fully configured and ready for insertion into the DOM.
  *
  * @function buildElementNS
@@ -68,6 +82,10 @@ const buildElement = (data = {}) => {
     }
     return undefined;
 };
+const SimplyBuilderAttachShadow = (data) => {
+    const {element, mode = 'closed'} = data;
+    return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].call(element, {mode});
+};
 /**
  * Dynamically creates a shadow root for a specified HTML element, using a simple mode string.
  * This function attaches a shadow DOM to the provided `shadowRootElement` with the shadow DOM
@@ -84,7 +102,8 @@ const buildElement = (data = {}) => {
  */
 const createShadowElementFromString = (data = {}) => {
     const {shadowRootElement, shadow} = data;
-    return shadowRootElement.attachShadow({
+    return SimplyBuilderAttachShadow({
+        element: shadowRootElement,
         mode: shadow
     });
 };
