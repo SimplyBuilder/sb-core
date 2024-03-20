@@ -7,41 +7,6 @@
  * @module DomModule
  */
 
-if(typeof window === "object" && typeof window['SimplyBuilderAttachShadow'] === "undefined") {
-   const SimplyBuilderAttachShadowSymbol = Symbol("Simply Builder AttachShadow Freeze");
-   const SimplyBuilderAttachShadowStore = {
-      [SimplyBuilderAttachShadowSymbol]: HTMLElement.prototype.attachShadow
-   };
-   Object.freeze(SimplyBuilderAttachShadowStore);
-   Object.defineProperty(window, 'SimplyBuilderAttachShadow', {
-      enumerable: false,
-      configurable: false,
-      writable: false,
-      value:  function () {
-         return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].apply(this, arguments);
-      }
-   });
-   Object.freeze(window.SimplyBuilderAttachShadow);
-   Object.defineProperty(Element.prototype, 'attachShadow', {
-      enumerable: false,
-      configurable: false,
-      writable: false,
-      value:  function () {
-         return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].apply(this, arguments);
-      }
-   });
-   Object.freeze(Element.prototype.attachShadow);
-   Object.defineProperty(HTMLElement.prototype, 'attachShadow', {
-      enumerable: false,
-      configurable: false,
-      writable: false,
-      value:  function () {
-         return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].apply(this, arguments);
-      }
-   });
-   Object.freeze(HTMLElement.prototype.attachShadow);
-}
-
 import store from "./store.js";
 import component from "./component/main.js";
 
