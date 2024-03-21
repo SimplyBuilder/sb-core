@@ -19,17 +19,52 @@ import {setAttr, setAttrNS} from "./attribute.js";
 import {setData} from "./dataset.js";
 
 /**
+ * A unique symbol used as a key to store the original `attachShadow` method in a secure manner.
+ * This symbol ensures that the reference is not accessible through direct property enumeration
+ * or accidental overrides.
+ *
+ * @memberof module:DomComponentModule
  * @ignore
  * @private
  * @type {symbol}
  */
 const SimplyBuilderAttachShadowSymbol = Symbol("Simply Builder AttachShadow Freeze");
+/**
+ * A temporary Frame element used to access a clean reference to `HTMLElement.prototype.attachShadow`.
+ * The Frame is appended to the document's body, thus it creates an isolated environment
+ * to obtain the original method untouched by any potential modifications in the main document context.
+ * After obtaining the method, the Frame is removed to clean up the environment.
+ *
+ * @memberof module:DomComponentModule
+ * @ignore
+ * @private
+ */
 const temporaryFrame = document.createElement("Frame");
 temporaryFrame.setAttribute('style', 'display:none!important');
+document.body.appendChild(temporaryFrame);
+/**
+ * Stores the original `attachShadow` method retrieved from the Frame's content window.
+ * This method is then frozen to prevent any modifications, ensuring its integrity.
+ * The storage object uses the `SimplyBuilderAttachShadowSymbol` as a key for secure access.
+ *
+ * @memberof module:DomComponentModule
+ * @ignore
+ * @private
+ */
 const SimplyBuilderAttachShadowStore = {
     [SimplyBuilderAttachShadowSymbol]: temporaryFrame.contentWindow.HTMLElement.prototype.attachShadow
 };
+/**
+ * Immediately freezes the `SimplyBuilderAttachShadowStore` object to ensure the stored
+ * `attachShadow` method cannot be modified or deleted, providing an immutable reference
+ * for the duration of the application lifecycle.
+ */
 Object.freeze(SimplyBuilderAttachShadowStore);
+/**
+ * Removes the temporary iframe from the DOM to clean up and prevent any memory leaks.
+ * This step is crucial to ensure that the Frame does not persist in the DOM tree,
+ * which could lead to unnecessary resource usage or potential security concerns.
+ */
 temporaryFrame.parentNode.removeChild(temporaryFrame);
 
 /**
@@ -82,6 +117,20 @@ const buildElement = (data = {}) => {
     }
     return undefined;
 };
+/**
+ * Provides a secure wrapper around the original `attachShadow` method, allowing elements
+ * to create shadow DOM trees using the unmodified, original method. This function takes
+ * an element and an optional mode ('open' or 'closed') and applies the `attachShadow` method
+ * to it using the stored reference.
+ *
+ * @function SimplyBuilderAttachShadow
+ * @memberof module:DomComponentModule
+ * @param {Object} data - The data object containing parameters for shadow DOM attachment.
+ * @param {HTMLElement} data.element - The DOM element to attach the shadow root to.
+ * @param {string} [data.mode='closed'] - The mode for the shadow DOM ('open' or 'closed'). Default is 'closed'.
+ * @returns {ShadowRoot} The newly created shadow root attached to the specified element.
+ * @private
+ */
 const SimplyBuilderAttachShadow = (data) => {
     const {element, mode = 'closed'} = data;
     return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].call(element, {mode});
@@ -126,7 +175,10 @@ const createShadowElementFromObject = (data = {}) => {
     const {shadowRootElement, shadow} = data;
     const {mode, styles} = shadow;
     if (mode) {
-        const shadowRoot = shadowRootElement.attachShadow({mode});
+        const shadowRoot = SimplyBuilderAttachShadow({
+            mode,
+            element: shadowRootElement
+        });
         if (styles) {
             const styleSheet = new CSSStyleSheet();
             styleSheet.replaceSync(styles);
