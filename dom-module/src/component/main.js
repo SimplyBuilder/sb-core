@@ -29,6 +29,43 @@ import {setData} from "./dataset.js";
  * @type {symbol}
  */
 const SimplyBuilderAttachShadowSymbol = Symbol("Simply Builder AttachShadow Freeze");
+/**
+ * A temporary Frame element used to access a clean reference to `HTMLElement.prototype.attachShadow`.
+ * The Frame is appended to the document's body, thus it creates an isolated environment
+ * to obtain the original method untouched by any potential modifications in the main document context.
+ * After obtaining the method, the Frame is removed to clean up the environment.
+ *
+ * @memberof module:DomComponentModule
+ * @ignore
+ * @private
+ */
+const temporaryFrame = document.createElement("Frame");
+temporaryFrame.setAttribute('style', 'display:none!important');
+document.body.appendChild(temporaryFrame);
+/**
+ * Stores the original `attachShadow` method retrieved from the Frame's content window.
+ * This method is then frozen to prevent any modifications, ensuring its integrity.
+ * The storage object uses the `SimplyBuilderAttachShadowSymbol` as a key for secure access.
+ *
+ * @memberof module:DomComponentModule
+ * @ignore
+ * @private
+ */
+const SimplyBuilderAttachShadowStore = {
+    [SimplyBuilderAttachShadowSymbol]: temporaryFrame.contentWindow.HTMLElement.prototype.attachShadow
+};
+/**
+ * Immediately freezes the `SimplyBuilderAttachShadowStore` object to ensure the stored
+ * `attachShadow` method cannot be modified or deleted, providing an immutable reference
+ * for the duration of the application lifecycle.
+ */
+Object.freeze(SimplyBuilderAttachShadowStore);
+/**
+ * Removes the temporary iframe from the DOM to clean up and prevent any memory leaks.
+ * This step is crucial to ensure that the Frame does not persist in the DOM tree,
+ * which could lead to unnecessary resource usage or potential security concerns.
+ */
+temporaryFrame.parentNode.removeChild(temporaryFrame);
 
 /**
  * Builds an SVG element with the specified type and attributes. It applies both standard and namespace-specific attributes, as well as custom data attributes, facilitating the creation of SVG elements that are fully configured and ready for insertion into the DOM.
@@ -96,36 +133,6 @@ const buildElement = (data = {}) => {
  */
 const SimplyBuilderAttachShadow = (data) => {
     const {element, mode = 'closed'} = data;
-
-    /**
-     * A temporary Frame element used to access a clean reference to `HTMLElement.prototype.attachShadow`.
-     * The Frame is appended to the document's body, thus it creates an isolated environment
-     * to obtain the original method untouched by any potential modifications in the main document context.
-     * After obtaining the method, the Frame is removed to clean up the environment.
-     *
-     * @ignore
-     * @private
-     */
-    const temporaryFrame = document.createElement("Frame");
-    temporaryFrame.setAttribute('style', 'display:none!important');
-    document.body.appendChild(temporaryFrame);
-    /**
-     * Stores the original `attachShadow` method retrieved from the Frame's content window.
-     * This method is then frozen to prevent any modifications, ensuring its integrity.
-     * The storage object uses the `SimplyBuilderAttachShadowSymbol` as a key for secure access.
-     *
-     * @ignore
-     * @private
-     */
-    const SimplyBuilderAttachShadowStore = {
-        [SimplyBuilderAttachShadowSymbol]: temporaryFrame.contentWindow.HTMLElement.prototype.attachShadow
-    };
-    /**
-     * Removes the temporary iframe from the DOM to clean up and prevent any memory leaks.
-     * This step is crucial to ensure that the Frame does not persist in the DOM tree,
-     * which could lead to unnecessary resource usage or potential security concerns.
-     */
-    temporaryFrame.parentNode.removeChild(temporaryFrame);
     return SimplyBuilderAttachShadowStore[SimplyBuilderAttachShadowSymbol].call(element, {mode});
 };
 /**
