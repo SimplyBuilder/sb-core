@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.1.0
+
+[compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.11...v1.1.0)
+
+### 💅 Refactors
+
+- **dom-module:** Remove unnecessary code from SimplyBuilderAttachShadow function" ([193d80c](https://github.com/SimplyBuilder/sb-core/commit/193d80c))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.8
 
 [compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.10...v1.0.8)
