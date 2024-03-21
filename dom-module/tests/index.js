@@ -2,9 +2,6 @@
 
 import {describe, it} from "node:test";
 import {deepEqual, equal, notEqual, ok} from "node:assert";
-import {DomModule} from "#sb-core-dom-module";
-import {EventModule} from "../../event-module/src/main.js";
-
 import { createRequire } from "node:module";
 
 import {JSDOM} from "jsdom";
@@ -24,6 +21,8 @@ const testElement = document.createElement("div");
 testElement.setAttribute("id", "div-test");
 document.body.appendChild(testElement);
 
+const {EventModule} = await import("../../event-module/src/main.js");
+const {DomModule} = await import( "#sb-core-dom-module");
 describe("import and tests", () => {
     it("check object", () => {
         ok(typeof DomModule === "object");
@@ -90,7 +89,7 @@ describe("import and tests", () => {
                 "dataset": [{"name": "state", "value": "simply-builder.main1"}]
             }
         });
-       equal(document.getElementById("test-create2"), null);
+        equal(document.getElementById("test-create2"), null);
         //
         DomModule.removeElement(element);
         equal(document.getElementById("test-create1"), null);
