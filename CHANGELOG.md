@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.0.10
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.9...v0.0.10)
+
+### 🚀 Enhancements
+
+- **dom-module:** Add SimplyBuilderAttachShadow function (b6f75c0)
+- **dom-module:** Remove redundant code for attaching shadow roots (2f0e5bf)
+- **core-module:** Remove unnecessary import (bcf11d1)
+
+### 💅 Refactors
+
+- **core-module:** Remove redundant code for attaching shadow roots (532d56f)
+- Organize imports in index.js in dom-module/tests (63dc99f)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.9
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.8...v0.0.9)
