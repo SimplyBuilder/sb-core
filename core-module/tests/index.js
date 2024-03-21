@@ -2,7 +2,6 @@
 
 import {describe, it} from "node:test";
 import {deepEqual, equal, notEqual, ok} from "node:assert";
-import {CoreModule} from "#sb-core-module";
 
 import { createRequire } from "node:module";
 
@@ -19,6 +18,8 @@ global['SVGElement'] = dom.window.SVGElement;
 const testElement = document.createElement("div");
 testElement.setAttribute("id", "div-test");
 document.body.appendChild(testElement);
+
+const {CoreModule} = await import( "#sb-core-module");
 
 describe("import and tests", () => {
     it("check object", () => {
