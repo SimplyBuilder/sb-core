@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.10...v0.0.11)
+
+### 💅 Refactors
+
+- **dom-module:** Remove unnecessary code from SimplyBuilderAttachShadow function (495b7eb)
+
+### 🏡 Chore
+
+- Update publish:modules script in package.json (de8925a)
+- Fix publish:modules script to include --no-git-checks flag (3235723)
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v0.0.10
 
 [compare changes](https://sp-core.github.com/SimplyBuilder/sb-core/compare/v0.0.9...v0.0.10)

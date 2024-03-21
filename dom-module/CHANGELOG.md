@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.0.8
+
+[compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.10...v1.0.8)
+
+### 💅 Refactors
+
+- **dom-module:** Remove unnecessary code from SimplyBuilderAttachShadow function ([495b7eb](https://github.com/SimplyBuilder/sb-core/commit/495b7eb))
+
+### 🏡 Chore
+
+- Update publish:modules script in package.json ([de8925a](https://github.com/SimplyBuilder/sb-core/commit/de8925a))
+- Fix publish:modules script to include --no-git-checks flag ([3235723](https://github.com/SimplyBuilder/sb-core/commit/3235723))
+
+### ❤️ Contributors
+
+- JamilServices <jamilservicos@gmail.com>
+
 ## v1.0.7
 
 [compare changes](https://github.com/SimplyBuilder/sb-core/compare/v0.0.9...v1.0.7)
