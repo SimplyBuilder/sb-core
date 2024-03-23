@@ -35,7 +35,7 @@ export const CoreModule: Readonly<{
      * Removes an element from the DOM, including its children and associated events.
      * @param element The DOM element to remove.
      */
-    removeElement: (element: HTMLElement | SVGAElement) => void;
+    removeElement: (element: HTMLElement | SVGElement) => void;
     /**
      * Registers a custom event type with an associated handler function.
      * @param name - The name of the custom event type to register.
