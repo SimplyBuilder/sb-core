@@ -49,7 +49,18 @@ Welcome to SimplyBuilder's Core JavaScript Modules - a collection of three power
 ### static example on StackBliz with event
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/stackblitz-starters-xlcwvj?embed=1&file=script.js&hideExplorer=1&hideNavigation=1)
 
-#         
+## 🌏  Open in the Cloud 
+Click any of the buttons below to start a new development environment to demo or contribute to the codebase:
+
+[![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://vscode.dev/github/SimplyBuilder/sb-core)
+[![Open in Glitch](https://img.shields.io/badge/Open%20in-Glitch-blue?logo=glitch)](https://glitch.com/edit/#!/import/github/SimplyBuilder/sb-core)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/SimplyBuilder/sb-core)
+[![Edit in Codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/SimplyBuilder/sb-core)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/SimplyBuilder/sb-core)
+[![Open in Repl.it](https://replit.com/badge/github/withastro/astro)](https://replit.com/github/SimplyBuilder/sb-core)
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/SimplyBuilder/sb-core)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/SimplyBuilder/sb-core)
+
 ### 🤖 Documented by Artificial Intelligence
 
 This project takes a leap into the future of code documentation and maintenance. 🚀            
